@@ -8,3 +8,11 @@ Tech Stack used:
 >JavaScript
 >HTML5
 >CSS
+
+*Install Django
+
+...\> py -m pip install Django
+
+*Commands
+
+python manage.py runserver
