@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% include '_components/header.html' %}
+
+<title>{% block title %} Weekly/Monthly | Geopro {% endblock %}</title>
+
+{% block content %}
+
+    <div class="container mx-auto">
+      <div class="grid grid-cols-4 gap-4 mt-4">
+
+        {% include '_components/_attendance[components]/_widget/widgets.html' %}
+
+        <div class=" col-start-4 rounded-md cursor-pointer">
+          <div class="flex items-center justify-end">
+            <div class="text-white text-xs font-sans font-inter font-bold">
+              <div class="flex justify-center w-36 h-11 border mt-14 bg-blue-700 text-white rounded-lg">
+                <button>
+                  Download Excel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="rounded-lg bg-white p-4 shadow-md col-span-4 h-[740px] mt-1 pb-2">
+            <div class="flex justify-between items-center mt-3 ml-3">
+                <h5 class="leading-44 text-2xl font-bold text-gray-700">Attendance</h5>    
+            </div>
+
+            {% include '_components/_attendance[components]/thresholdtab.html' %}
+
+            <div class="grid grid-cols-8 font-sans font-inter text-base font-bold text-gray-700 mt-10 ml-1 py-2">
+                <table class="col-span-8 border-separate border-gray-200 border-spacing-y-[0.5rem] my-[-2rem]">
+                    <colgroup>
+                      <col span="3" class="text-center">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <div>
+                                <th class=" text-gray-500 border-b text-left border-gray-700">Name</th>
+                                <th class=" text-gray-500 border-b border-gray-700">Department</th>
+                                <th class=" text-gray-500 py-2 border-b border-gray-700">Work Schedule</th>
+                                <th class=" text-gray-500 py-2 border-b border-gray-700">Worked Hour</th>
+                                <th class=" text-gray-500 py-2 border-b border-gray-700">Overtime</th>
+                                <th class=" text-gray-500 py-2 border-b border-gray-700">Holiday Work</th>
+                                <th class=" text-gray-500 py-2 border-b border-gray-700">Holiday Overtime</th>
+                                <th class=" text-gray-500 py-2 border-b border-gray-700">Leave</th>
+                                <th class=" text-gray-500 py-2 border-b border-gray-700">Tardiness</th>
+                                <th class=" text-gray-500 py-2 border-b border-gray-700">Under time</th>
+                                <th class=" text-gray-500 py-2 border-b border-gray-700">Absences</th>
+                                <th class=" text-gray-500 py-2 border-b border-gray-700">Custom Policy</th>
+                              </div>
+                        </tr>
+                    </thead>
+                    <tbody class="font-sans text-xs font-normal font-inter">
+                      {% for mon in monthly %}
+                        <tr>
+                            <td class="inline-flex relative">
+                                <img src="{% static 'images/employee1.png' %}" class="rounded-full border border-b h-12 w-12" alt="profile" />
+                                <div class=" absolute bottom-[1.5px] left-9 mb-1 border-white border-2 bg-green-600 rounded-full w-4 h-4"></div>
+                                <div class="text-sm font-bold font-sans font-inter mt-1 ml-2">
+                                    Chan P Dacillo
+                                    <div class="text-xs font-sans font-inter font-normal mt-1">
+                                        Team Leader
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="px-3 py-2 text-center">{{ mon.department }}</td>
+                            <td class="px-3 py-2 text-center">{{ mon.work_schedule }}</td>
+                            <td class="px-3 py-2 text-center">{{ mon.work_hour }}</td>
+                            <td class="px-3 py-2 text-center">{{ mon.overtime }}</td>
+                            <td class="px-3 py-2 text-center">{{ mon.holiday_work }}</td>
+                            <td class="px-3 py-2 text-center">{{ mon.holiday_overtime }}</td>
+                            <td class="px-3 py-2 text-center">{{ mon.leave }}</td>
+                            <td class="px-3 py-2 text-center">{{ mon.tardiness }}</td>
+                            <td class="px-3 py-2 text-center">{{ mon.under_time }}</td>
+                            <td class="px-3 py-2 text-center">{{ mon.absences }}</td>
+                            <td class="px-3 py-2 text-center">{{ mon.custom_policy }}</td>
+                        </tr>
+                      {% endfor %}
+                    </tbody>   
+                </table>
+            </div>
+      </div>
+    </div>
+    </div>
+
+    <script src="{% static 'js/script.js' %}"></script>
+    
+{% endblock %}

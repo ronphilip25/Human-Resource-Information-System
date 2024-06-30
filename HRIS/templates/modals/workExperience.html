@@ -1,0 +1,212 @@
+{% extends 'modals/jobInfo.html' %}
+
+{% block mainTitle %}
+Work Experience
+{% endblock mainTitle %}
+
+{% block hidden %}
+<div class=" fixed top-0 left-0 w-full h-full bg-black opacity-50 z-10" id="overlay"></div>
+
+
+<!-- Modal -->
+<div class=" w-full max-w-5xl mx-auto h-auto fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-12 rounded-md shadow-md z-20 " id="modal">
+{% endblock hidden %}
+
+{% block tabs %}
+<div class="flex items-center justify-between bg-blue-100 rounded-lg px-4 h-10">
+    <div>
+        <a href="jobInfo" type="button" id="jobInfo" onclick="handleButtonClick(this)" class="px-5 bg-blue-100 font-medium text-xs text-center border-b-2 my-button pb-2 ">Job Info</a>
+    </div>
+    <div>
+        <a href="basicInfo" type="button" id="basicInfo"  onclick="handleButtonClick(this)" class="  px-5 bg-blue-100 font-medium text-xs text-center border-b-2 my-button pb-2 ">Basic Info</a>    
+    </div>
+    <div>
+        <a href="education" type="button" id="education"  onclick="handleButtonClick(this)" class=" px-5 bg-blue-100 font-medium text-xs text-center border-b-2 my-button pb-2 ">Education</a>     
+    </div>
+    <div>
+        <a href="workExperience" type="button" id="workExperience"  onclick="handleButtonClick(this)" class="  px-5 bg-blue-100 font-medium text-xs text-center border-b-2 my-button pb-2 text-blue-500 border-blue-700">Work Experience/Certificate</a>     
+    </div>
+</div>
+{% endblock tabs %}
+
+
+{% block title %}
+        <div class="flex items-center justify-between">
+
+            <label  class="pt-4 text-lg font-bold block text-black">Work Experience (0)</label>
+            <div class="flex items-center">
+                <button id="openModalWork" type="button" class="mt-6 border-2 py-2 px-8 rounded-lg border-blue-600 focus:outline-none hover:bg-blue-200 focus:gray-red-300">Add</button>
+            </div>      
+             
+        </div>
+
+
+{% endblock title %}
+
+
+{% block content %}
+
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+    
+    <!-- Overlay -->
+    <div class="hidden fixed top-0 left-0 w-full h-full bg-black opacity-50 z-10" id="overlayWork"></div>
+
+    <!-- Modal -->
+    <div class="hidden w-2/3 mx-auto h-full fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-5 px-12 rounded-md shadow-md z-20" id="modalWork">
+        <h2 class="text-2xl font-bold mb-4 pb-6 border-b border-blue-300 flex justify-between items-center font-inter">
+            Add Work Experience
+            <a href="#">
+                <div class="flex items-center">
+                    <div id="exitBtnWork" class="w-6 h-6 flex justify-center items-center border border-red-400 rounded-full text-red-500 text-xs">
+                        &#x2715;
+                    </div>
+                </div>
+            </a>
+            
+        </h2>
+        
+        
+        
+        <form action="#" method="POST">
+            {% csrf_token %}
+            <div class="mb-8">
+                <label for="Work-Schedule-Type" class="text-sm font-bold block text-s text-black mb-3">Company Name</label>
+                <input type="text" id="title" name="title" placeholder="Company ABC" class="border-2 mt-1 block w-full rounded-md border-gray-400 shadow-sm py-1 pl-3 pr-10 text-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50 hover:border-blue-600 focus:border-blue-600 focus:outline-none" onfocus="handleInputFocus()" onblur="handleInputBlur()">
+            </div>
+            <div class="mb-8">
+                <label for="Work-Schedule-Name" class="text-sm font-bold block text-s text-black font-inter mb-3">Department</label> 
+                <input type="text" id="title" name="title" placeholder="Enter Department" class="border-2 mt-1 block w-full rounded-md border-gray-400 shadow-sm py-1 pl-3 pr-10 text-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50 hover:border-blue-600 focus:border-blue-600 focus:outline-none" onfocus="handleInputFocus()" onblur="handleInputBlur()">
+            </div>
+            
+            <div class="mb-8">
+                <label for="Work-Schedule-Name" class="text-sm font-bold block text-s text-black font-inter mb-3">Tier</label> 
+                <input type="text" id="title" name="title" placeholder="Enter Tier" class="border-2 mt-1 block w-full rounded-md border-gray-400 shadow-sm py-1 pl-3 pr-10 text-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50 hover:border-blue-600 focus:border-blue-600 focus:outline-none" onfocus="handleInputFocus()" onblur="handleInputBlur()">
+            </div>
+
+            <div class="flex justify-between mt-5 mb-8">
+                <div class="flex-1 mr-2">
+                    <label for="Join-Date" class="text-sm font-bold block text-black mb-2">First day of work</label> 
+                    <div class="pt-1 relative">
+                        <input type="date" id="joinDate" name="calendar" class=" h-9  text-sm block w-full rounded-md border-2 border-gray-400 shadow-sm py-1 pl-3 pr-1 appearance-none hover:border-blue-600 focus:border-blue-600 focus:outline-none" onclick="showCalendar()">
+                        <span class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                            <!-- This is where the old icon used to be -->
+                        </span>
+                    </div>
+                </div>
+
+                <div class="flex-1">
+                    <label for="Join-Date" class="text-sm font-bold block text-black mb-2">Last day of work</label>
+
+                    <div class="pt-1 relative">
+                        <input type="date" id="joinDate" name="calendar" class=" h-9  text-sm block w-full rounded-md border-2 border-gray-400 shadow-sm py-1 pl-3 pr-1 appearance-none hover:border-blue-600 focus:border-blue-600 focus:outline-none" onclick="showCalendar()">
+                        <span class="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
+                            <!-- This is where the old icon used to be -->
+                        </span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mb-4 border-blue-300 border-b pb-8">
+                <label for="Work-Schedule-Type" class="text-sm font-bold block text-s text-black mb-3">Contract Type</label>
+                <div class="relative">
+                    <select class="text-sm block w-full rounded-md border-2 border-gray-400 shadow-sm py-1 pl-3 pr-10 appearance-none hover:border-blue-600 focus:border-blue-600 focus:outline-none">
+                        <option  disabled selected value="">Select Contract Type</option>
+                        <option value="option1">1</option>
+                        <option value="option2">2</option>
+                        <option value="option3">3</option>
+                        <option value="option4">4</option>
+                        <option value="option5">5</option>
+
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
+                        <!-- Heroicon name: solid/chevron-down -->
+                        <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M10 12.586L4.707 7.293a1 1 0 00-1.414 1.414l6 6a1 1 0 001.414 0l6-6a1 1 0 10-1.414-1.414L10 12.586z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class=" flex justify-end">
+                <button type="button" id="CancelBtnWork" class="border-2 py-2 px-4 rounded-md mr-4 hover:bg-gray-300 focus:outline-none focus:gray-red-300">Cancel</button>
+                <button type="submit" class="w-20 bg-blue-700 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 font-inter">Add</button>
+            </div>
+            
+        </form>
+    </div>
+
+            <div class="grid col-start-2 col-span-4 row-start-2 row-span-4 border-blue-300 border-l">
+
+
+
+                <div class="row-span-4 hidden">
+
+                    <div class="flex items-start justify-between pb-2">
+                        <label  class="pl-4 text-lg font-bold block text-gray-700">Mabalacat City College</label>
+                        <div class="flex items-center">
+                            <a href="#" class="text-blue-800 hover:text-blue-800 pr-1">Edit</a>
+                        </div>       
+                    </div>
+
+
+                    <div class="pl-4 container mx-auto">
+                        <table class="min-w-full">
+                            <tbody>
+                                <tr class="border-b border-dotted border-gray-400">
+                                    <td class="py-3 whitespace-nowrap text-left">
+                                        <div class="text-sm text-gray-600">Type</div>
+                                    </td>
+                                    <td class="whitespace-nowrap text-right">
+                                        <div class="font-bold text-sm text-gray-600">College</div>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-dotted border-gray-400">
+                                    <td class=" py-3 whitespace-nowrap text-left">
+                                        <div class="text-sm text-gray-600">Major</div>
+                                    </td>
+                                    <td class="whitespace-nowrap text-right">
+                                        <div class="font-bold text-sm text-gray-600">BSIT</div>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-dotted border-gray-400">
+                                    <td class=" py-3 whitespace-nowrap text-left">
+                                        <div class="text-sm text-gray-600">Admission Date</div>
+                                    </td>
+                                    <td class="whitespace-nowrap text-right">
+                                        <div class="font-bold text-sm text-gray-600">08/05/2019</div>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-dotted border-gray-400">
+                                    <td class=" py-3 whitespace-nowrap text-left">
+                                        <div class="text-sm text-gray-600">Graduation Date</div>
+                                    </td>
+                                    <td class="whitespace-nowrap text-right">
+                                        <div class="font-bold text-sm text-gray-600">10/05/2023</div>
+                                    </td>
+                                </tr>
+                                <tr class="border-b border-dotted border-gray-400">
+                                    <td class=" py-3 whitespace-nowrap text-left">
+                                        <div class="text-sm text-gray-600">Graduation Category</div>
+                                    </td>
+                                    <td class="whitespace-nowrap text-right">
+                                        <div class="font-bold text-sm text-gray-600">Graduated</div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>         
+                </div>
+
+                <div class="flex content-center justify-between">
+                    <label  class="pt-4 text-lg font-bold block text-black pl-4">Certificate (0)</label>
+                    <div class="flex items-start">
+                        <button id="" type="button" class="mt-3 border-2 py-2 px-8 rounded-lg border-blue-600 focus:outline-none hover:bg-blue-200 focus:gray-red-300">Add</button>
+                    </div>                    
+                </div>
+                    
+            </div>
+
+
+
+
+{% endblock content %}

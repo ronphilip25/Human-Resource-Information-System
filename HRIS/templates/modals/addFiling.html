@@ -1,0 +1,472 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Filing</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    
+</head>
+
+<body class="bg-gray-100 flex justify-center items-center h-screen ">
+    <!-- Overlay -->
+    <div class="hidden fixed top-0 left-0 w-full h-full bg-black opacity-50 z-10" id="overlayDepartment"></div>
+
+    <!-- Modal -->
+    <div class="hidden w-full max-w-2xl mx-auto h-3/4 fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-12 rounded-md shadow-md z-20 " id="modalDepartment">
+        <h2 class="text-2xl font-bold border-b border-blue-300 pt-6 pb-6 flex justify-between items-center">
+            Add Filing
+                <a href="#">
+                    <div id="exitBtnDepartment" class="w-6 h-6 flex justify-center items-center border border-red-400 rounded-full text-red-500 text-xs">&#x2715;</div>
+                </a>
+        </h2>
+        
+        <div class=" h-5/6 overflow-y-scroll overflow-hidden pr-2">
+        <form action="#" method="POST">
+            {% csrf_token %}
+
+
+                    <div class="mb-4 pt-4">
+                        <label for="Work-Schedule-Type" class="text-sm font-bold block text-s text-black mb-3">Select Category</label>
+                        <div class="relative">
+                            <select class="text-sm block w-full rounded-md border-2 border-gray-400 shadow-sm py-1 pl-3 pr-10 appearance-none hover:border-blue-600 focus:border-blue-600 focus:outline-none">
+                                <option  disabled selected value="">Select Category</option>
+                                <option value="option1">1</option>
+                                <option value="option2">2</option>
+                                <option value="option3">3</option>
+                                <option value="option4">4</option>
+
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
+                                <!-- Heroicon name: solid/chevron-down -->
+                                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M10 12.586L4.707 7.293a1 1 0 00-1.414 1.414l6 6a1 1 0 001.414 0l6-6a1 1 0 10-1.414-1.414L10 12.586z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+      
+
+                    <div class="mb-8 mt-6">
+                        <label for="Work-Schedule-Name" class="text-sm font-bold block text-s text-black font-inter mb-3">Title</label> 
+                        <input type="text" id="title" name="title" placeholder="Please Enter the Title" class="border-2 mt-1 block w-full rounded-md border-gray-400 shadow-sm py-1 pl-3 pr-10 text-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50 hover:border-blue-600 focus:border-blue-600 focus:outline-none" onfocus="handleInputFocus()" onblur="handleInputBlur()">
+                    </div>
+
+                    <div class="mb-8   mt-6">
+                        <label for="Work-Schedule-Name" class="text-sm font-bold block text-s text-black font-inter mb-3">Description</label> 
+                        <input type="text" id="title" name="title" placeholder="Please Enter the Contents" class="border-2 mt-1 block w-full rounded-md border-gray-400 shadow-sm py-1 pl-3 pr-10 text-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50 hover:border-blue-600 focus:border-blue-600 focus:outline-none" onfocus="handleInputFocus()" onblur="handleInputBlur()">
+                    </div>
+
+                    <div id="firstDiv" class=" border border-gray-400 rounded-lg px-3 ">
+
+                        <div class="mb-3 mt-2">
+                            <label for="Work-Schedule-Name" class="text-sm font-bold block text-s text-black font-inter mb-3">Title</label> 
+                            <input type="text" id="title" name="title" placeholder="Please Enter the Title" class="border-2 mt-1 block w-full rounded-md border-gray-400 shadow-sm py-1 pl-3 pr-10 text-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50 hover:border-blue-600 focus:border-blue-600 focus:outline-none" onfocus="handleInputFocus()" onblur="handleInputBlur()">
+                        </div>
+    
+                        <div class="mb-3   mt-3">
+                            <label for="Work-Schedule-Name" class="text-sm font-bold block text-s text-black font-inter mb-3">Type</label> 
+                            <div class="relative">
+                                <select class="text-sm block w-full rounded-md border-2 border-gray-400 shadow-sm py-1 pl-3 pr-10 appearance-none hover:border-blue-600 focus:border-blue-600 focus:outline-none">
+                                    <option  disabled selected value="">Please Select the Type</option>
+                                    <option value="option1">Text Type</option>
+                                    <option value="option2">Number Type</option>
+                                    <option value="option3">Amount Type</option>
+                                    <option value="option4">Date Type</option>
+                                    <option value="option5">Single Select</option>
+                                    <option value="option6">Multi Select</option>
+                                    <option value="option7">Upload Type</option>
+                                    <option value="option8">Provided Sample Template</option>
+                                    <option value="option9">Link Type</option>
+
+    
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
+                                    <!-- Heroicon name: solid/chevron-down -->
+                                    <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M10 12.586L4.707 7.293a1 1 0 00-1.414 1.414l6 6a1 1 0 001.414 0l6-6a1 1 0 10-1.414-1.414L10 12.586z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3   mt-3">
+                            <label for="Work-Schedule-Name" class="text-sm font-bold block text-s text-black font-inter mb-3">Mandatory</label> 
+                        </div>
+
+                        <div class="flex justify-between mt-3 mb-8">
+                            <div class="flex-1 mr-2">
+                                <button type="button" class="my-button border-gray-400 w-full border-2 py-2 px-4 rounded-md mr-4 hover:bg-green-200 focus:outline-none focus:gray-green-300" id="myButton"  onclick="handleButtonClick(this)">Yes</button>
+                            </div>
+            
+                            <div class="flex-1">
+                                <button type="button" class="my-button border-gray-400 w-full border-2 py-2 px-4 rounded-md mr-4 hover:bg-red-200 focus:outline-none focus:gray-red-300" id="myButton"  onclick="handleButtonClick(this)">No</button>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 flex justify-end pb-6">
+                            <button type="button" class="border-2 py-2 px-4 rounded-md mr-4 hover:bg-gray-300 focus:outline-none focus:gray-red-300">Cancel</button>
+                            <button type="submit" id="saveButton" class="w-20 bg-blue-700 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 font-inter" >Save</button>
+                        </div>
+
+                    </div>
+
+
+                   <!---HIDDEN DIVS-->
+
+                    <div id="textTypeDiv" class=" hidden pb-6 mt-6">
+                        <label class="pb-3 pl-8 text-sm font-bold block text-black">Text Type <span class="text-red-700">*</span></label>
+                        <div class="flex">
+                            <div class="mt-3 mr-3 text-gray-200">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.21893 12C8.21893 12.6917 7.94416 13.355 7.45506 13.8441C6.96597 14.3332 6.30261 14.608 5.61093 14.608C4.91925 14.608 4.25589 14.3332 3.7668 13.8441C3.2777 13.355 3.00293 12.6917 3.00293 12C3.00293 11.3083 3.2777 10.645 3.7668 10.1559C4.25589 9.66677 4.91925 9.392 5.61093 9.392C6.30261 9.392 6.96597 9.66677 7.45506 10.1559C7.94416 10.645 8.21893 11.3083 8.21893 12ZM8.21893 2.608C8.21893 3.29968 7.94416 3.96304 7.45506 4.45213C6.96597 4.94123 6.30261 5.216 5.61093 5.216C4.91925 5.216 4.25589 4.94123 3.7668 4.45213C3.2777 3.96304 3.00293 3.29968 3.00293 2.608C3.00293 1.91632 3.2777 1.25296 3.7668 0.763866C4.25589 0.274771 4.91925 0 5.61093 0C6.30261 0 6.96597 0.274771 7.45506 0.763866C7.94416 1.25296 8.21893 1.91632 8.21893 2.608ZM8.21893 21.391C8.21893 22.0827 7.94416 22.746 7.45506 23.2351C6.96597 23.7242 6.30261 23.999 5.61093 23.999C4.91925 23.999 4.25589 23.7242 3.7668 23.2351C3.2777 22.746 3.00293 22.0827 3.00293 21.391C3.00293 20.6993 3.2777 20.036 3.7668 19.5469C4.25589 19.0578 4.91925 18.783 5.61093 18.783C6.30261 18.783 6.96597 19.0578 7.45506 19.5469C7.94416 20.036 8.21893 20.6993 8.21893 21.391Z" fill="#333333"/>
+                                <path d="M20.7199 12C20.7199 12.6917 20.4451 13.355 19.956 13.8441C19.4669 14.3332 18.8036 14.608 18.1119 14.608C17.4202 14.608 16.7569 14.3332 16.2678 13.8441C15.7787 13.355 15.5039 12.6917 15.5039 12C15.5039 11.3083 15.7787 10.645 16.2678 10.1559C16.7569 9.66677 17.4202 9.392 18.1119 9.392C18.8036 9.392 19.4669 9.66677 19.956 10.1559C20.4451 10.645 20.7199 11.3083 20.7199 12ZM20.7199 2.608C20.7199 3.29968 20.4451 3.96304 19.956 4.45213C19.4669 4.94123 18.8036 5.216 18.1119 5.216C17.4202 5.216 16.7569 4.94123 16.2678 4.45213C15.7787 3.96304 15.5039 3.29968 15.5039 2.608C15.5039 1.91632 15.7787 1.25296 16.2678 0.763866C16.7569 0.274771 17.4202 0 18.1119 0C18.8036 0 19.4669 0.274771 19.956 0.763866C20.4451 1.25296 20.7199 1.91632 20.7199 2.608ZM20.7199 21.391C20.7199 22.0827 20.4451 22.746 19.956 23.2351C19.4669 23.7242 18.8036 23.999 18.1119 23.999C17.4202 23.999 16.7569 23.7242 16.2678 23.2351C15.7787 22.746 15.5039 22.0827 15.5039 21.391C15.5039 20.6993 15.7787 20.036 16.2678 19.5469C16.7569 19.0578 17.4202 18.783 18.1119 18.783C18.8036 18.783 19.4669 19.0578 19.956 19.5469C20.4451 20.036 20.7199 20.6993 20.7199 21.391Z" fill="#333333"/>
+                                </svg> 
+                            </div>                               
+                            <input type="text" id="title" name="title" placeholder="Input Information" class="w-full mr-3 border-2 mt-1 block  rounded-md border-gray-400 shadow-sm py-2 pl-3 pr-10 text-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50 hover:border-blue-600 focus:border-blue-600 focus:outline-none" onfocus="handleInputFocus()" onblur="handleInputBlur()">
+                            <button class="bg-red-500 rounded-lg text-white text-xs w-28 mr-2">Delete</button>
+                        </div>
+                    </div>
+
+                    <div id="numberTypeDiv" class=" hidden pb-6 mt-6">
+                        <label class="pb-3 pl-8 text-sm font-bold block text-black">Number Type</label>
+                        <div class="flex">
+                            <div class="mt-3 mr-3 text-gray-200">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.21893 12C8.21893 12.6917 7.94416 13.355 7.45506 13.8441C6.96597 14.3332 6.30261 14.608 5.61093 14.608C4.91925 14.608 4.25589 14.3332 3.7668 13.8441C3.2777 13.355 3.00293 12.6917 3.00293 12C3.00293 11.3083 3.2777 10.645 3.7668 10.1559C4.25589 9.66677 4.91925 9.392 5.61093 9.392C6.30261 9.392 6.96597 9.66677 7.45506 10.1559C7.94416 10.645 8.21893 11.3083 8.21893 12ZM8.21893 2.608C8.21893 3.29968 7.94416 3.96304 7.45506 4.45213C6.96597 4.94123 6.30261 5.216 5.61093 5.216C4.91925 5.216 4.25589 4.94123 3.7668 4.45213C3.2777 3.96304 3.00293 3.29968 3.00293 2.608C3.00293 1.91632 3.2777 1.25296 3.7668 0.763866C4.25589 0.274771 4.91925 0 5.61093 0C6.30261 0 6.96597 0.274771 7.45506 0.763866C7.94416 1.25296 8.21893 1.91632 8.21893 2.608ZM8.21893 21.391C8.21893 22.0827 7.94416 22.746 7.45506 23.2351C6.96597 23.7242 6.30261 23.999 5.61093 23.999C4.91925 23.999 4.25589 23.7242 3.7668 23.2351C3.2777 22.746 3.00293 22.0827 3.00293 21.391C3.00293 20.6993 3.2777 20.036 3.7668 19.5469C4.25589 19.0578 4.91925 18.783 5.61093 18.783C6.30261 18.783 6.96597 19.0578 7.45506 19.5469C7.94416 20.036 8.21893 20.6993 8.21893 21.391Z" fill="#333333"/>
+                                <path d="M20.7199 12C20.7199 12.6917 20.4451 13.355 19.956 13.8441C19.4669 14.3332 18.8036 14.608 18.1119 14.608C17.4202 14.608 16.7569 14.3332 16.2678 13.8441C15.7787 13.355 15.5039 12.6917 15.5039 12C15.5039 11.3083 15.7787 10.645 16.2678 10.1559C16.7569 9.66677 17.4202 9.392 18.1119 9.392C18.8036 9.392 19.4669 9.66677 19.956 10.1559C20.4451 10.645 20.7199 11.3083 20.7199 12ZM20.7199 2.608C20.7199 3.29968 20.4451 3.96304 19.956 4.45213C19.4669 4.94123 18.8036 5.216 18.1119 5.216C17.4202 5.216 16.7569 4.94123 16.2678 4.45213C15.7787 3.96304 15.5039 3.29968 15.5039 2.608C15.5039 1.91632 15.7787 1.25296 16.2678 0.763866C16.7569 0.274771 17.4202 0 18.1119 0C18.8036 0 19.4669 0.274771 19.956 0.763866C20.4451 1.25296 20.7199 1.91632 20.7199 2.608ZM20.7199 21.391C20.7199 22.0827 20.4451 22.746 19.956 23.2351C19.4669 23.7242 18.8036 23.999 18.1119 23.999C17.4202 23.999 16.7569 23.7242 16.2678 23.2351C15.7787 22.746 15.5039 22.0827 15.5039 21.391C15.5039 20.6993 15.7787 20.036 16.2678 19.5469C16.7569 19.0578 17.4202 18.783 18.1119 18.783C18.8036 18.783 19.4669 19.0578 19.956 19.5469C20.4451 20.036 20.7199 20.6993 20.7199 21.391Z" fill="#333333"/>
+                                </svg> 
+                            </div>                               
+                            <input type="text" id="title" name="title" placeholder="Input Number" class="w-full mr-3 border-2 mt-1 block  rounded-md border-gray-400 shadow-sm py-2 pl-3 pr-10 text-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50 hover:border-blue-600 focus:border-blue-600 focus:outline-none" onfocus="handleInputFocus()" onblur="handleInputBlur()">
+                            <button class="bg-red-500 rounded-lg text-white text-xs w-28 mr-2">Delete</button>
+                        </div>
+                    </div>
+
+                    <div id="amountTypeDiv" class=" hidden pb-6 mt-6">
+                        <label class="pb-3 pl-8 text-sm font-bold block text-black">Amount</label>
+                        <div class="flex">
+                            <div class="mt-3 mr-3 text-gray-200">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.21893 12C8.21893 12.6917 7.94416 13.355 7.45506 13.8441C6.96597 14.3332 6.30261 14.608 5.61093 14.608C4.91925 14.608 4.25589 14.3332 3.7668 13.8441C3.2777 13.355 3.00293 12.6917 3.00293 12C3.00293 11.3083 3.2777 10.645 3.7668 10.1559C4.25589 9.66677 4.91925 9.392 5.61093 9.392C6.30261 9.392 6.96597 9.66677 7.45506 10.1559C7.94416 10.645 8.21893 11.3083 8.21893 12ZM8.21893 2.608C8.21893 3.29968 7.94416 3.96304 7.45506 4.45213C6.96597 4.94123 6.30261 5.216 5.61093 5.216C4.91925 5.216 4.25589 4.94123 3.7668 4.45213C3.2777 3.96304 3.00293 3.29968 3.00293 2.608C3.00293 1.91632 3.2777 1.25296 3.7668 0.763866C4.25589 0.274771 4.91925 0 5.61093 0C6.30261 0 6.96597 0.274771 7.45506 0.763866C7.94416 1.25296 8.21893 1.91632 8.21893 2.608ZM8.21893 21.391C8.21893 22.0827 7.94416 22.746 7.45506 23.2351C6.96597 23.7242 6.30261 23.999 5.61093 23.999C4.91925 23.999 4.25589 23.7242 3.7668 23.2351C3.2777 22.746 3.00293 22.0827 3.00293 21.391C3.00293 20.6993 3.2777 20.036 3.7668 19.5469C4.25589 19.0578 4.91925 18.783 5.61093 18.783C6.30261 18.783 6.96597 19.0578 7.45506 19.5469C7.94416 20.036 8.21893 20.6993 8.21893 21.391Z" fill="#333333"/>
+                                <path d="M20.7199 12C20.7199 12.6917 20.4451 13.355 19.956 13.8441C19.4669 14.3332 18.8036 14.608 18.1119 14.608C17.4202 14.608 16.7569 14.3332 16.2678 13.8441C15.7787 13.355 15.5039 12.6917 15.5039 12C15.5039 11.3083 15.7787 10.645 16.2678 10.1559C16.7569 9.66677 17.4202 9.392 18.1119 9.392C18.8036 9.392 19.4669 9.66677 19.956 10.1559C20.4451 10.645 20.7199 11.3083 20.7199 12ZM20.7199 2.608C20.7199 3.29968 20.4451 3.96304 19.956 4.45213C19.4669 4.94123 18.8036 5.216 18.1119 5.216C17.4202 5.216 16.7569 4.94123 16.2678 4.45213C15.7787 3.96304 15.5039 3.29968 15.5039 2.608C15.5039 1.91632 15.7787 1.25296 16.2678 0.763866C16.7569 0.274771 17.4202 0 18.1119 0C18.8036 0 19.4669 0.274771 19.956 0.763866C20.4451 1.25296 20.7199 1.91632 20.7199 2.608ZM20.7199 21.391C20.7199 22.0827 20.4451 22.746 19.956 23.2351C19.4669 23.7242 18.8036 23.999 18.1119 23.999C17.4202 23.999 16.7569 23.7242 16.2678 23.2351C15.7787 22.746 15.5039 22.0827 15.5039 21.391C15.5039 20.6993 15.7787 20.036 16.2678 19.5469C16.7569 19.0578 17.4202 18.783 18.1119 18.783C18.8036 18.783 19.4669 19.0578 19.956 19.5469C20.4451 20.036 20.7199 20.6993 20.7199 21.391Z" fill="#333333"/>
+                                </svg> 
+                            </div>                               
+                            <input type="text" id="title" name="title" placeholder="Input Amount" class=" w-full mr-3 border-2 mt-1 block  rounded-md border-gray-400 shadow-sm py-2 pl-3 pr-10 text-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50 hover:border-blue-600 focus:border-blue-600 focus:outline-none" onfocus="handleInputFocus()" onblur="handleInputBlur()">
+                            <input type="text" id="title" name="title" placeholder="Php" class="text-center w-16 mr-3 border-2 mt-1 block  rounded-md border-gray-400 shadow-sm py-2 text-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50 hover:border-blue-600 focus:border-blue-600 focus:outline-none" onfocus="handleInputFocus()" onblur="handleInputBlur()">
+                            <button class="bg-red-500 rounded-lg text-white text-xs w-28 mr-2">Delete</button>
+                        </div>
+                    </div>
+
+                    <div id="dateTypeDiv" class=" hidden pb-6 mt-6">
+                        <label class="pb-3 pl-8 text-sm font-bold block text-black">Date</label>
+                        <div class="flex">
+                            <div class="mt-3 mr-3 text-gray-200">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.21893 12C8.21893 12.6917 7.94416 13.355 7.45506 13.8441C6.96597 14.3332 6.30261 14.608 5.61093 14.608C4.91925 14.608 4.25589 14.3332 3.7668 13.8441C3.2777 13.355 3.00293 12.6917 3.00293 12C3.00293 11.3083 3.2777 10.645 3.7668 10.1559C4.25589 9.66677 4.91925 9.392 5.61093 9.392C6.30261 9.392 6.96597 9.66677 7.45506 10.1559C7.94416 10.645 8.21893 11.3083 8.21893 12ZM8.21893 2.608C8.21893 3.29968 7.94416 3.96304 7.45506 4.45213C6.96597 4.94123 6.30261 5.216 5.61093 5.216C4.91925 5.216 4.25589 4.94123 3.7668 4.45213C3.2777 3.96304 3.00293 3.29968 3.00293 2.608C3.00293 1.91632 3.2777 1.25296 3.7668 0.763866C4.25589 0.274771 4.91925 0 5.61093 0C6.30261 0 6.96597 0.274771 7.45506 0.763866C7.94416 1.25296 8.21893 1.91632 8.21893 2.608ZM8.21893 21.391C8.21893 22.0827 7.94416 22.746 7.45506 23.2351C6.96597 23.7242 6.30261 23.999 5.61093 23.999C4.91925 23.999 4.25589 23.7242 3.7668 23.2351C3.2777 22.746 3.00293 22.0827 3.00293 21.391C3.00293 20.6993 3.2777 20.036 3.7668 19.5469C4.25589 19.0578 4.91925 18.783 5.61093 18.783C6.30261 18.783 6.96597 19.0578 7.45506 19.5469C7.94416 20.036 8.21893 20.6993 8.21893 21.391Z" fill="#333333"/>
+                                <path d="M20.7199 12C20.7199 12.6917 20.4451 13.355 19.956 13.8441C19.4669 14.3332 18.8036 14.608 18.1119 14.608C17.4202 14.608 16.7569 14.3332 16.2678 13.8441C15.7787 13.355 15.5039 12.6917 15.5039 12C15.5039 11.3083 15.7787 10.645 16.2678 10.1559C16.7569 9.66677 17.4202 9.392 18.1119 9.392C18.8036 9.392 19.4669 9.66677 19.956 10.1559C20.4451 10.645 20.7199 11.3083 20.7199 12ZM20.7199 2.608C20.7199 3.29968 20.4451 3.96304 19.956 4.45213C19.4669 4.94123 18.8036 5.216 18.1119 5.216C17.4202 5.216 16.7569 4.94123 16.2678 4.45213C15.7787 3.96304 15.5039 3.29968 15.5039 2.608C15.5039 1.91632 15.7787 1.25296 16.2678 0.763866C16.7569 0.274771 17.4202 0 18.1119 0C18.8036 0 19.4669 0.274771 19.956 0.763866C20.4451 1.25296 20.7199 1.91632 20.7199 2.608ZM20.7199 21.391C20.7199 22.0827 20.4451 22.746 19.956 23.2351C19.4669 23.7242 18.8036 23.999 18.1119 23.999C17.4202 23.999 16.7569 23.7242 16.2678 23.2351C15.7787 22.746 15.5039 22.0827 15.5039 21.391C15.5039 20.6993 15.7787 20.036 16.2678 19.5469C16.7569 19.0578 17.4202 18.783 18.1119 18.783C18.8036 18.783 19.4669 19.0578 19.956 19.5469C20.4451 20.036 20.7199 20.6993 20.7199 21.391Z" fill="#333333"/>
+                                </svg> 
+                            </div>                                       
+                            <input type="date" id="joinDate" name="calendar" class="w-full mr-3 border-2 mt-1 block  rounded-md border-gray-400 shadow-sm py-2 pl-3 pr-10 text-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50 hover:border-blue-600 focus:border-blue-600 focus:outline-none uppercase" onfocus="handleInputFocus()" onblur="handleInputBlur()">
+                            <button class="bg-red-500 rounded-lg text-white text-xs w-28 mr-2">Delete</button>
+                        </div>
+                    </div>
+
+                    <div id="singleTypeDiv" class=" hidden pb-6 mt-6">
+                        <label class="pb-3 pl-8 text-sm font-bold block text-black">Single Select</label>
+                        <div class="flex">
+                            <div class="mt-3 mr-3 text-gray-200">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.21893 12C8.21893 12.6917 7.94416 13.355 7.45506 13.8441C6.96597 14.3332 6.30261 14.608 5.61093 14.608C4.91925 14.608 4.25589 14.3332 3.7668 13.8441C3.2777 13.355 3.00293 12.6917 3.00293 12C3.00293 11.3083 3.2777 10.645 3.7668 10.1559C4.25589 9.66677 4.91925 9.392 5.61093 9.392C6.30261 9.392 6.96597 9.66677 7.45506 10.1559C7.94416 10.645 8.21893 11.3083 8.21893 12ZM8.21893 2.608C8.21893 3.29968 7.94416 3.96304 7.45506 4.45213C6.96597 4.94123 6.30261 5.216 5.61093 5.216C4.91925 5.216 4.25589 4.94123 3.7668 4.45213C3.2777 3.96304 3.00293 3.29968 3.00293 2.608C3.00293 1.91632 3.2777 1.25296 3.7668 0.763866C4.25589 0.274771 4.91925 0 5.61093 0C6.30261 0 6.96597 0.274771 7.45506 0.763866C7.94416 1.25296 8.21893 1.91632 8.21893 2.608ZM8.21893 21.391C8.21893 22.0827 7.94416 22.746 7.45506 23.2351C6.96597 23.7242 6.30261 23.999 5.61093 23.999C4.91925 23.999 4.25589 23.7242 3.7668 23.2351C3.2777 22.746 3.00293 22.0827 3.00293 21.391C3.00293 20.6993 3.2777 20.036 3.7668 19.5469C4.25589 19.0578 4.91925 18.783 5.61093 18.783C6.30261 18.783 6.96597 19.0578 7.45506 19.5469C7.94416 20.036 8.21893 20.6993 8.21893 21.391Z" fill="#333333"/>
+                                <path d="M20.7199 12C20.7199 12.6917 20.4451 13.355 19.956 13.8441C19.4669 14.3332 18.8036 14.608 18.1119 14.608C17.4202 14.608 16.7569 14.3332 16.2678 13.8441C15.7787 13.355 15.5039 12.6917 15.5039 12C15.5039 11.3083 15.7787 10.645 16.2678 10.1559C16.7569 9.66677 17.4202 9.392 18.1119 9.392C18.8036 9.392 19.4669 9.66677 19.956 10.1559C20.4451 10.645 20.7199 11.3083 20.7199 12ZM20.7199 2.608C20.7199 3.29968 20.4451 3.96304 19.956 4.45213C19.4669 4.94123 18.8036 5.216 18.1119 5.216C17.4202 5.216 16.7569 4.94123 16.2678 4.45213C15.7787 3.96304 15.5039 3.29968 15.5039 2.608C15.5039 1.91632 15.7787 1.25296 16.2678 0.763866C16.7569 0.274771 17.4202 0 18.1119 0C18.8036 0 19.4669 0.274771 19.956 0.763866C20.4451 1.25296 20.7199 1.91632 20.7199 2.608ZM20.7199 21.391C20.7199 22.0827 20.4451 22.746 19.956 23.2351C19.4669 23.7242 18.8036 23.999 18.1119 23.999C17.4202 23.999 16.7569 23.7242 16.2678 23.2351C15.7787 22.746 15.5039 22.0827 15.5039 21.391C15.5039 20.6993 15.7787 20.036 16.2678 19.5469C16.7569 19.0578 17.4202 18.783 18.1119 18.783C18.8036 18.783 19.4669 19.0578 19.956 19.5469C20.4451 20.036 20.7199 20.6993 20.7199 21.391Z" fill="#333333"/>
+                                </svg> 
+                            </div>                               
+                            <input type="text" id="title" name="title" placeholder="Input Single Option" class="w-full mr-3 border-2 mt-1 block  rounded-md border-gray-400 shadow-sm py-2 pl-3 pr-10 text-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50 hover:border-blue-600 focus:border-blue-600 focus:outline-none" onfocus="handleInputFocus()" onblur="handleInputBlur()">
+                            <button class="bg-red-500 rounded-lg text-white text-xs w-28 mr-2">Delete</button>
+                        </div>
+                        <div class="flex pr-7 my-2">                            
+                            <input type="text" id="title" name="title" placeholder="Input Single Option" class="ml-7 w-4/5 border-2 mt-1 block  rounded-md border-gray-400 shadow-sm py-2 pl-3 text-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50 hover:border-blue-600 focus:border-blue-600 focus:outline-none" onfocus="handleInputFocus()" onblur="handleInputBlur()">
+                        </div>
+                        <div class="flex pr-7">    
+                            <button type="button" id="" class="ml-7 w-4/5 border mt-1 block  rounded-md shadow-sm py-2 pl-3 text-blue-800 text-sm focus:ring bg-blue-200 hover:bg-blue-600 focus:ring-blue-200 focus:ring-opacity-50 border-blue-500 hover:border-blue-500 focus:border-blue-900 focus:outline-none" onfocus="handleInputFocus()" onblur="handleInputBlur()">Add Option</button>
+                        </div>
+                    </div>
+
+                    
+                    <div id="multiTypeDiv" class=" hidden pb-6 mt-6">
+                        <label class="pb-3 pl-8 text-sm font-bold block text-black">Multi Select</label>
+                        <div class="flex">
+                            <div class="mt-3 mr-3 text-gray-200">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.21893 12C8.21893 12.6917 7.94416 13.355 7.45506 13.8441C6.96597 14.3332 6.30261 14.608 5.61093 14.608C4.91925 14.608 4.25589 14.3332 3.7668 13.8441C3.2777 13.355 3.00293 12.6917 3.00293 12C3.00293 11.3083 3.2777 10.645 3.7668 10.1559C4.25589 9.66677 4.91925 9.392 5.61093 9.392C6.30261 9.392 6.96597 9.66677 7.45506 10.1559C7.94416 10.645 8.21893 11.3083 8.21893 12ZM8.21893 2.608C8.21893 3.29968 7.94416 3.96304 7.45506 4.45213C6.96597 4.94123 6.30261 5.216 5.61093 5.216C4.91925 5.216 4.25589 4.94123 3.7668 4.45213C3.2777 3.96304 3.00293 3.29968 3.00293 2.608C3.00293 1.91632 3.2777 1.25296 3.7668 0.763866C4.25589 0.274771 4.91925 0 5.61093 0C6.30261 0 6.96597 0.274771 7.45506 0.763866C7.94416 1.25296 8.21893 1.91632 8.21893 2.608ZM8.21893 21.391C8.21893 22.0827 7.94416 22.746 7.45506 23.2351C6.96597 23.7242 6.30261 23.999 5.61093 23.999C4.91925 23.999 4.25589 23.7242 3.7668 23.2351C3.2777 22.746 3.00293 22.0827 3.00293 21.391C3.00293 20.6993 3.2777 20.036 3.7668 19.5469C4.25589 19.0578 4.91925 18.783 5.61093 18.783C6.30261 18.783 6.96597 19.0578 7.45506 19.5469C7.94416 20.036 8.21893 20.6993 8.21893 21.391Z" fill="#333333"/>
+                                <path d="M20.7199 12C20.7199 12.6917 20.4451 13.355 19.956 13.8441C19.4669 14.3332 18.8036 14.608 18.1119 14.608C17.4202 14.608 16.7569 14.3332 16.2678 13.8441C15.7787 13.355 15.5039 12.6917 15.5039 12C15.5039 11.3083 15.7787 10.645 16.2678 10.1559C16.7569 9.66677 17.4202 9.392 18.1119 9.392C18.8036 9.392 19.4669 9.66677 19.956 10.1559C20.4451 10.645 20.7199 11.3083 20.7199 12ZM20.7199 2.608C20.7199 3.29968 20.4451 3.96304 19.956 4.45213C19.4669 4.94123 18.8036 5.216 18.1119 5.216C17.4202 5.216 16.7569 4.94123 16.2678 4.45213C15.7787 3.96304 15.5039 3.29968 15.5039 2.608C15.5039 1.91632 15.7787 1.25296 16.2678 0.763866C16.7569 0.274771 17.4202 0 18.1119 0C18.8036 0 19.4669 0.274771 19.956 0.763866C20.4451 1.25296 20.7199 1.91632 20.7199 2.608ZM20.7199 21.391C20.7199 22.0827 20.4451 22.746 19.956 23.2351C19.4669 23.7242 18.8036 23.999 18.1119 23.999C17.4202 23.999 16.7569 23.7242 16.2678 23.2351C15.7787 22.746 15.5039 22.0827 15.5039 21.391C15.5039 20.6993 15.7787 20.036 16.2678 19.5469C16.7569 19.0578 17.4202 18.783 18.1119 18.783C18.8036 18.783 19.4669 19.0578 19.956 19.5469C20.4451 20.036 20.7199 20.6993 20.7199 21.391Z" fill="#333333"/>
+                                </svg> 
+                            </div>                               
+                            <input type="text" id="title" name="title" placeholder="Input Multiple Option" class="w-full mr-3 border-2 mt-1 block  rounded-md border-gray-400 shadow-sm py-2 pl-3 pr-10 text-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50 hover:border-blue-600 focus:border-blue-600 focus:outline-none" onfocus="handleInputFocus()" onblur="handleInputBlur()">
+                            <button class="bg-red-500 rounded-lg text-white text-xs w-28 mr-2">Delete</button>
+                        </div>
+                        <div class="flex pr-7 my-2">                            
+                            <input type="text" id="title" name="title" placeholder="Input Multiple Option" class="ml-7 w-4/5 border-2 mt-1 block  rounded-md border-gray-400 shadow-sm py-2 pl-3 text-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50 hover:border-blue-600 focus:border-blue-600 focus:outline-none" onfocus="handleInputFocus()" onblur="handleInputBlur()">
+                        </div>
+                        <div class="flex pr-7">    
+                            <button type="button" id="" class="ml-7 w-4/5 border mt-1 block  rounded-md shadow-sm py-2 pl-3 text-blue-800 text-sm focus:ring bg-blue-200 hover:bg-blue-600 focus:ring-blue-200 focus:ring-opacity-50 border-blue-500 hover:border-blue-500 focus:border-blue-900 focus:outline-none" onfocus="handleInputFocus()" onblur="handleInputBlur()">Add Option</button>
+                        </div>
+                    </div>
+
+                    <div id="uploadTypeDiv" class=" hidden pb-6 mt-6">
+                        <label class="pb-3 pl-8 text-sm font-bold block text-black">Upload Type</label>
+                        <div class="flex">
+                            <div class="mt-3 mr-3 text-gray-200">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.21893 12C8.21893 12.6917 7.94416 13.355 7.45506 13.8441C6.96597 14.3332 6.30261 14.608 5.61093 14.608C4.91925 14.608 4.25589 14.3332 3.7668 13.8441C3.2777 13.355 3.00293 12.6917 3.00293 12C3.00293 11.3083 3.2777 10.645 3.7668 10.1559C4.25589 9.66677 4.91925 9.392 5.61093 9.392C6.30261 9.392 6.96597 9.66677 7.45506 10.1559C7.94416 10.645 8.21893 11.3083 8.21893 12ZM8.21893 2.608C8.21893 3.29968 7.94416 3.96304 7.45506 4.45213C6.96597 4.94123 6.30261 5.216 5.61093 5.216C4.91925 5.216 4.25589 4.94123 3.7668 4.45213C3.2777 3.96304 3.00293 3.29968 3.00293 2.608C3.00293 1.91632 3.2777 1.25296 3.7668 0.763866C4.25589 0.274771 4.91925 0 5.61093 0C6.30261 0 6.96597 0.274771 7.45506 0.763866C7.94416 1.25296 8.21893 1.91632 8.21893 2.608ZM8.21893 21.391C8.21893 22.0827 7.94416 22.746 7.45506 23.2351C6.96597 23.7242 6.30261 23.999 5.61093 23.999C4.91925 23.999 4.25589 23.7242 3.7668 23.2351C3.2777 22.746 3.00293 22.0827 3.00293 21.391C3.00293 20.6993 3.2777 20.036 3.7668 19.5469C4.25589 19.0578 4.91925 18.783 5.61093 18.783C6.30261 18.783 6.96597 19.0578 7.45506 19.5469C7.94416 20.036 8.21893 20.6993 8.21893 21.391Z" fill="#333333"/>
+                                <path d="M20.7199 12C20.7199 12.6917 20.4451 13.355 19.956 13.8441C19.4669 14.3332 18.8036 14.608 18.1119 14.608C17.4202 14.608 16.7569 14.3332 16.2678 13.8441C15.7787 13.355 15.5039 12.6917 15.5039 12C15.5039 11.3083 15.7787 10.645 16.2678 10.1559C16.7569 9.66677 17.4202 9.392 18.1119 9.392C18.8036 9.392 19.4669 9.66677 19.956 10.1559C20.4451 10.645 20.7199 11.3083 20.7199 12ZM20.7199 2.608C20.7199 3.29968 20.4451 3.96304 19.956 4.45213C19.4669 4.94123 18.8036 5.216 18.1119 5.216C17.4202 5.216 16.7569 4.94123 16.2678 4.45213C15.7787 3.96304 15.5039 3.29968 15.5039 2.608C15.5039 1.91632 15.7787 1.25296 16.2678 0.763866C16.7569 0.274771 17.4202 0 18.1119 0C18.8036 0 19.4669 0.274771 19.956 0.763866C20.4451 1.25296 20.7199 1.91632 20.7199 2.608ZM20.7199 21.391C20.7199 22.0827 20.4451 22.746 19.956 23.2351C19.4669 23.7242 18.8036 23.999 18.1119 23.999C17.4202 23.999 16.7569 23.7242 16.2678 23.2351C15.7787 22.746 15.5039 22.0827 15.5039 21.391C15.5039 20.6993 15.7787 20.036 16.2678 19.5469C16.7569 19.0578 17.4202 18.783 18.1119 18.783C18.8036 18.783 19.4669 19.0578 19.956 19.5469C20.4451 20.036 20.7199 20.6993 20.7199 21.391Z" fill="#333333"/>
+                                </svg> 
+                            </div>                               
+                            <input type="file" id="title" name="title" placeholder="Input Amount" class=" w-full mr-3 border-2 mt-1 block  rounded-md border-gray-400 shadow-sm py-2 pl-3 pr-10 text-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50 hover:border-blue-600 focus:border-blue-600 focus:outline-none" onfocus="handleInputFocus()" onblur="handleInputBlur()">
+                            <button class="bg-blue-700 rounded-lg text-white text-xs w-28 mr-2">Upload</button>
+                            <button class="bg-red-500 rounded-lg text-white text-xs w-28 mr-2">Delete</button>
+                        </div>
+                        <div class="pl-8"><span class="text-xs text-gray-500 font-bold"> You can upload up to 1 file of 20MB or less</span></div>
+                    </div>
+
+                    <div id="providedSampleTemplateTypeDiv" class=" hidden pb-6 mt-6">
+                        <label class="pb-3 pl-8 text-sm font-bold block text-black">Provided Sample Template</label>
+                        <div class="flex">
+                            <div class="mt-3 mr-3 text-gray-200">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.21893 12C8.21893 12.6917 7.94416 13.355 7.45506 13.8441C6.96597 14.3332 6.30261 14.608 5.61093 14.608C4.91925 14.608 4.25589 14.3332 3.7668 13.8441C3.2777 13.355 3.00293 12.6917 3.00293 12C3.00293 11.3083 3.2777 10.645 3.7668 10.1559C4.25589 9.66677 4.91925 9.392 5.61093 9.392C6.30261 9.392 6.96597 9.66677 7.45506 10.1559C7.94416 10.645 8.21893 11.3083 8.21893 12ZM8.21893 2.608C8.21893 3.29968 7.94416 3.96304 7.45506 4.45213C6.96597 4.94123 6.30261 5.216 5.61093 5.216C4.91925 5.216 4.25589 4.94123 3.7668 4.45213C3.2777 3.96304 3.00293 3.29968 3.00293 2.608C3.00293 1.91632 3.2777 1.25296 3.7668 0.763866C4.25589 0.274771 4.91925 0 5.61093 0C6.30261 0 6.96597 0.274771 7.45506 0.763866C7.94416 1.25296 8.21893 1.91632 8.21893 2.608ZM8.21893 21.391C8.21893 22.0827 7.94416 22.746 7.45506 23.2351C6.96597 23.7242 6.30261 23.999 5.61093 23.999C4.91925 23.999 4.25589 23.7242 3.7668 23.2351C3.2777 22.746 3.00293 22.0827 3.00293 21.391C3.00293 20.6993 3.2777 20.036 3.7668 19.5469C4.25589 19.0578 4.91925 18.783 5.61093 18.783C6.30261 18.783 6.96597 19.0578 7.45506 19.5469C7.94416 20.036 8.21893 20.6993 8.21893 21.391Z" fill="#333333"/>
+                                <path d="M20.7199 12C20.7199 12.6917 20.4451 13.355 19.956 13.8441C19.4669 14.3332 18.8036 14.608 18.1119 14.608C17.4202 14.608 16.7569 14.3332 16.2678 13.8441C15.7787 13.355 15.5039 12.6917 15.5039 12C15.5039 11.3083 15.7787 10.645 16.2678 10.1559C16.7569 9.66677 17.4202 9.392 18.1119 9.392C18.8036 9.392 19.4669 9.66677 19.956 10.1559C20.4451 10.645 20.7199 11.3083 20.7199 12ZM20.7199 2.608C20.7199 3.29968 20.4451 3.96304 19.956 4.45213C19.4669 4.94123 18.8036 5.216 18.1119 5.216C17.4202 5.216 16.7569 4.94123 16.2678 4.45213C15.7787 3.96304 15.5039 3.29968 15.5039 2.608C15.5039 1.91632 15.7787 1.25296 16.2678 0.763866C16.7569 0.274771 17.4202 0 18.1119 0C18.8036 0 19.4669 0.274771 19.956 0.763866C20.4451 1.25296 20.7199 1.91632 20.7199 2.608ZM20.7199 21.391C20.7199 22.0827 20.4451 22.746 19.956 23.2351C19.4669 23.7242 18.8036 23.999 18.1119 23.999C17.4202 23.999 16.7569 23.7242 16.2678 23.2351C15.7787 22.746 15.5039 22.0827 15.5039 21.391C15.5039 20.6993 15.7787 20.036 16.2678 19.5469C16.7569 19.0578 17.4202 18.783 18.1119 18.783C18.8036 18.783 19.4669 19.0578 19.956 19.5469C20.4451 20.036 20.7199 20.6993 20.7199 21.391Z" fill="#333333"/>
+                                </svg> 
+                            </div>                               
+                            <input type="file" id="title" name="title" placeholder="Sample Template Upload" class=" w-full mr-3 border-2 mt-1 block  rounded-md border-gray-400 shadow-sm py-2 pl-3 pr-10 text-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50 hover:border-blue-600 focus:border-blue-600 focus:outline-none" onfocus="handleInputFocus()" onblur="handleInputBlur()">
+                            <button class="bg-blue-700 rounded-lg text-white text-xs w-28 mr-2">Upload</button>
+                            <button class="bg-red-500 rounded-lg text-white text-xs w-28 mr-2">Delete</button>
+                        </div>
+                        <div class="pl-8"><span class="text-xs text-gray-500 font-bold"> You can upload up to 1 file of 20MB or less</span></div>
+                    </div>
+
+                    <div id="linkTypeDiv" class=" hidden pb-6 mt-6">
+                        <label class="pb-3 pl-8 text-sm font-bold block text-black">Link</label>
+                        <div class="flex">
+                            <div class="mt-3 mr-3 text-gray-200">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8.21893 12C8.21893 12.6917 7.94416 13.355 7.45506 13.8441C6.96597 14.3332 6.30261 14.608 5.61093 14.608C4.91925 14.608 4.25589 14.3332 3.7668 13.8441C3.2777 13.355 3.00293 12.6917 3.00293 12C3.00293 11.3083 3.2777 10.645 3.7668 10.1559C4.25589 9.66677 4.91925 9.392 5.61093 9.392C6.30261 9.392 6.96597 9.66677 7.45506 10.1559C7.94416 10.645 8.21893 11.3083 8.21893 12ZM8.21893 2.608C8.21893 3.29968 7.94416 3.96304 7.45506 4.45213C6.96597 4.94123 6.30261 5.216 5.61093 5.216C4.91925 5.216 4.25589 4.94123 3.7668 4.45213C3.2777 3.96304 3.00293 3.29968 3.00293 2.608C3.00293 1.91632 3.2777 1.25296 3.7668 0.763866C4.25589 0.274771 4.91925 0 5.61093 0C6.30261 0 6.96597 0.274771 7.45506 0.763866C7.94416 1.25296 8.21893 1.91632 8.21893 2.608ZM8.21893 21.391C8.21893 22.0827 7.94416 22.746 7.45506 23.2351C6.96597 23.7242 6.30261 23.999 5.61093 23.999C4.91925 23.999 4.25589 23.7242 3.7668 23.2351C3.2777 22.746 3.00293 22.0827 3.00293 21.391C3.00293 20.6993 3.2777 20.036 3.7668 19.5469C4.25589 19.0578 4.91925 18.783 5.61093 18.783C6.30261 18.783 6.96597 19.0578 7.45506 19.5469C7.94416 20.036 8.21893 20.6993 8.21893 21.391Z" fill="#333333"/>
+                                <path d="M20.7199 12C20.7199 12.6917 20.4451 13.355 19.956 13.8441C19.4669 14.3332 18.8036 14.608 18.1119 14.608C17.4202 14.608 16.7569 14.3332 16.2678 13.8441C15.7787 13.355 15.5039 12.6917 15.5039 12C15.5039 11.3083 15.7787 10.645 16.2678 10.1559C16.7569 9.66677 17.4202 9.392 18.1119 9.392C18.8036 9.392 19.4669 9.66677 19.956 10.1559C20.4451 10.645 20.7199 11.3083 20.7199 12ZM20.7199 2.608C20.7199 3.29968 20.4451 3.96304 19.956 4.45213C19.4669 4.94123 18.8036 5.216 18.1119 5.216C17.4202 5.216 16.7569 4.94123 16.2678 4.45213C15.7787 3.96304 15.5039 3.29968 15.5039 2.608C15.5039 1.91632 15.7787 1.25296 16.2678 0.763866C16.7569 0.274771 17.4202 0 18.1119 0C18.8036 0 19.4669 0.274771 19.956 0.763866C20.4451 1.25296 20.7199 1.91632 20.7199 2.608ZM20.7199 21.391C20.7199 22.0827 20.4451 22.746 19.956 23.2351C19.4669 23.7242 18.8036 23.999 18.1119 23.999C17.4202 23.999 16.7569 23.7242 16.2678 23.2351C15.7787 22.746 15.5039 22.0827 15.5039 21.391C15.5039 20.6993 15.7787 20.036 16.2678 19.5469C16.7569 19.0578 17.4202 18.783 18.1119 18.783C18.8036 18.783 19.4669 19.0578 19.956 19.5469C20.4451 20.036 20.7199 20.6993 20.7199 21.391Z" fill="#333333"/>
+                                </svg> 
+                            </div>                               
+                            <input type="text" id="title" name="title" placeholder="Input the Link" class="w-full mr-3 border-2 mt-1 block  rounded-md border-gray-400 shadow-sm py-2 pl-3 pr-10 text-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50 hover:border-blue-600 focus:border-blue-600 focus:outline-none" onfocus="handleInputFocus()" onblur="handleInputBlur()">
+                            <button class="bg-red-500 rounded-lg text-white text-xs w-28 mr-2">Delete</button>
+                        </div>
+                    </div>
+
+
+
+                    <!---END OF HIDDEN DIVS-->
+
+
+
+                    <div class="  pb-6 mt-6">
+                        <button type="button" id="openModalCategory" class="flex border justify-center border-blue-500 items-center w-full text-blue-800 font-bold py-2 px-4 rounded-md hover:bg-blue-300 focus:outline-nonefont-inter">Add Property</button>
+                    </div>
+
+                    <div class="flex items-start mb-2">
+                        <span class="text-lg font-bold">Select an approver</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <label class="text-xs block text-black mr-3">Level Head</label>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="myCheckbox" name="myCheckbox">
+                            <label class="text-xs block pl-2 text-black ml-1" for="myCheckbox">Automatic</label>
+                        </div>
+                    </div>
+                    
+                    <div class="pt-4 border-b border-blue-300 pb-8">
+                        <div class="relative">
+                            <select class="text-sm block w-full rounded-md border-2 border-gray-300 shadow-sm py-1 pl-3 pr-10 appearance-none hover:border-blue-600 focus:border-blue-600 focus:outline-none">
+                                <option disabled selected value="">Select</option>
+                                <option value="option2">Option 2</option>
+                                <option value="option3">Option 3</option>
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-400">
+                                <!-- Heroicon name: solid/chevron-down -->
+                                <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M10 12.586L4.707 7.293a1 1 0 00-1.414 1.414l6 6a1 1 0 001.414 0l6-6a1 1 0 10-1.414-1.414L10 12.586z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                        </div>                
+                    </div>
+
+
+
+
+
+
+                    <div class="mt-6 flex justify-end pb-6">
+                        <button type="button" id="CancelBtnDepartment" class="border-2 py-2 px-4 rounded-md mr-4 hover:bg-gray-300 focus:outline-none focus:gray-red-300">Cancel</button>
+                        <button type="submit" class="w-20 bg-blue-700 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 font-inter">Add</button>
+                    </div>
+
+
+   
+        </form>
+    </div>
+
+
+    </div>
+
+
+    
+    
+    <!-- Button to open modal -->
+  
+
+    <!-- JavaScript to handle modal -->
+    <script>
+
+
+        function handleButtonClick(clickedButton) {
+                    const buttons = document.querySelectorAll('.my-button');
+            
+                    buttons.forEach(button => {
+                        if (button === clickedButton) {
+                            button.classList.add('text-blue-500', 'border-blue-500');
+                            button.classList.remove('text-gray-500', 'border-gray-300');
+                        } else {
+                            button.classList.remove('text-blue-500', 'border-blue-500');
+                            button.classList.add('text-gray-500', 'border-gray-300');
+                        }
+                    });
+                }
+
+
+
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            function closeModalDepartment() {
+                const overlayDepartment = document.getElementById('overlayDepartment');
+                const modalDepartment = document.getElementById('modalDepartment');
+                const openDepartment= document.getElementById('openModalDepartment');
+                overlayDepartment.classList.add('hidden');
+                modalDepartment.classList.add('hidden');
+                openModalDepartment.classList.remove('opacity-0');
+             }
+
+            openModalDepartment.addEventListener('click', function() {
+                overlayDepartment.classList.remove('hidden');
+                modalDepartment.classList.remove('hidden');
+              
+            });
+
+            overlayDepartment.addEventListener('click', function() {
+                closeModalDepartment();
+            });
+            
+            exitBtnDepartment.addEventListener('click', function() {
+                closeModalDepartment();
+            });
+
+            CancelBtnDepartment.addEventListener('click', function() {
+                closeModalDepartment();
+            });
+
+
+        });
+
+    // Function to hide the firstDiv
+    function hideFirstDiv() {
+        document.getElementById('firstDiv').style.display = 'none';
+    }
+    function showTextTypeDiv() {
+        document.getElementById('textTypeDiv').style.display = 'block';
+    }
+    function showNumberTypeDiv() {
+        document.getElementById('numberTypeDiv').style.display = 'block';
+    }
+    function showAmountTypeDiv() {
+        document.getElementById('amountTypeDiv').style.display = 'block';
+    }
+    function dateTypeDiv() {
+        document.getElementById('dateTypeDiv').style.display = 'block';
+    }
+    function singleTypeDiv() {
+        document.getElementById('singleTypeDiv').style.display = 'block';
+    }
+    function multiTypeDiv() {
+        document.getElementById('multiTypeDiv').style.display = 'block';
+    }
+    function uploadTypeDiv() {
+        document.getElementById('uploadTypeDiv').style.display = 'block';
+    }
+    function providedSampleTemplateTypeDiv() {
+        document.getElementById('providedSampleTemplateTypeDiv').style.display = 'block';
+    }
+    function linkTypeDiv() {
+        document.getElementById('linkTypeDiv').style.display = 'block';
+    }
+
+
+    // Add event listener to the save button
+    document.getElementById('saveButton').addEventListener('click', function(event) {
+        // Check if option1 is selected
+        var selectedOption = document.querySelector('#firstDiv select').value;
+        if (selectedOption === 'option1') {
+            // Call the function to hide the firstDiv
+            hideFirstDiv();
+            event.preventDefault();
+            showTextTypeDiv();
+        } 
+        else if (selectedOption === 'option2'){
+            hideFirstDiv();
+            event.preventDefault();
+            showNumberTypeDiv();
+        }
+        else if (selectedOption === 'option3'){
+            hideFirstDiv();
+            event.preventDefault();
+            showAmountTypeDiv();
+        }
+        else if (selectedOption === 'option4'){
+            hideFirstDiv();
+            event.preventDefault();
+            dateTypeDiv();
+        }
+        else if (selectedOption === 'option5'){
+            hideFirstDiv();
+            event.preventDefault();
+            singleTypeDiv();
+        }
+        else if (selectedOption === 'option6'){
+            hideFirstDiv();
+            event.preventDefault();
+            multiTypeDiv();
+        }
+        else if (selectedOption === 'option7'){
+            hideFirstDiv();
+            event.preventDefault();
+            uploadTypeDiv();
+        }
+        else if (selectedOption === 'option8'){
+            hideFirstDiv();
+            event.preventDefault();
+            providedSampleTemplateTypeDiv();
+        }
+        else if (selectedOption === 'option9'){
+            hideFirstDiv();
+            event.preventDefault();
+            linkTypeDiv();
+        }
+        
+    });
+
+
+    </script>
+    
+    
+</div>
+
+</div>
+

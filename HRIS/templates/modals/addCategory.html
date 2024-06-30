@@ -1,0 +1,283 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Category</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&Caveat:wght@500&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                        caveat: ['Caveat', 'cursive'],
+                    },
+                },
+            },
+        };
+    </script>
+    
+    
+</head>
+
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+    <!-- Overlay -->
+    <div class="hidden fixed top-0 left-0 w-full h-full bg-black opacity-50 z-10" id="overlayDepartment1"></div>
+
+    <!-- Modal -->
+    <div class="hidden w-full max-w-2xl mx-auto h-auto fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-12 rounded-md shadow-md z-20 " id="modalDepartment1">
+        <h2 class="text-2xl font-bold border-b border-blue-300 pt-6 pb-6 flex justify-between items-center">
+            Add Category
+                <a href="#">
+                    <div id="exitBtnDepartment1" class="w-6 h-6 flex justify-center items-center border border-red-400 rounded-full text-red-500 text-xs">&#x2715;</div>
+                </a>
+        </h2>
+                
+
+        <div class="  pb-8 mt-6">
+            <button type="button" id="openModalCategory" class="flex border-2 justify-center bg-blue-600 border-blue-500 items-center w-full  text-white py-2 px-4 rounded-md hover:bg-blue-300 focus:outline-nonefont-inter">Add Category</button>
+        </div>
+
+
+        <div class="pb-8 mt-6 flex items-center justify-between">
+            <button type="submit" class="flex border border-gray-500 items-center w-full text-white py-2 px-4 rounded-md hover:bg-blue-300 focus:outline-none font-inter">
+                <span class="flex items-center text-black font-bold">Loans</span> <!-- "HR" aligned to the left -->
+                <span class="flex items-center justify-end flex-1">
+                    <span class="w-[5px] h-[5px] bg-black rounded-full"></span>
+                    <span class="w-[5px] h-[5px] bg-black rounded-full mx-1"></span>
+                    <span class="w-[5px] h-[5px] bg-black rounded-full"></span>
+                </span> <!-- Dots aligned to the right -->
+            </button>
+        </div>
+
+        <div class="pb-64 mt-3 flex items-center justify-between">
+            <button type="submit" class="flex border border-gray-500 items-center w-full text-white py-2 px-4 rounded-md hover:bg-blue-300 focus:outline-none font-inter">
+                <span class="flex items-center text-black font-bold">HR</span> <!-- "HR" aligned to the left -->
+                <span class="flex items-center justify-end flex-1">
+                    <span class="w-[5px] h-[5px] bg-black rounded-full"></span>
+                    <span class="w-[5px] h-[5px] bg-black rounded-full mx-1"></span>
+                    <span class="w-[5px] h-[5px] bg-black rounded-full"></span>
+                </span> <!-- Dots aligned to the right -->
+            </button>
+
+
+             <!-- Overlay -->
+             <div class="hidden fixed top-0 left-0 w-full h-full bg-black opacity-50 z-10 " id="overlayCategory"></div>
+    
+             <!-- Modal -->
+             <div class="hidden w-full max-w-2xl mx-auto h-auto fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-12 rounded-md shadow-md z-20 " id="modalCategory">
+                 <h2 class="text-2xl font-bold border-b border-blue-300 pt-6 pb-6 flex justify-between items-center">
+                     Add Category
+                         <a href="#">
+                             <div id="exitBtnCategory" class="w-6 h-6 flex justify-center items-center border border-red-400 rounded-full text-red-500 text-xs">&#x2715;</div>
+                         </a>
+                 </h2>
+                 
+                 <form action="#" method="POST">
+                     {% csrf_token %}
+               
+         
+                             <div class="mb-8 border-b border-blue-300 pb-8 mt-6">
+                                 <label for="Work-Schedule-Name" class="text-sm font-bold block text-s text-black font-inter mb-3">Category Name</label> 
+                                 <input type="text" id="title" name="title" placeholder="Enter Category Name" class="border-2 mt-1 block w-full rounded-md border-gray-400 shadow-sm py-1 pl-3 pr-10 text-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50 hover:border-blue-600 focus:border-blue-600 focus:outline-none" onfocus="handleInputFocus()" onblur="handleInputBlur()">
+                             </div>
+         
+                             <div class="mt-6 flex justify-end pb-6">
+                                 <button type="button" id="CancelBtnCategory" class="border-2 py-2 px-4 rounded-md mr-4 hover:bg-gray-300 focus:outline-none focus:gray-red-300">Cancel</button>
+                                 <button type="submit" class="w-20 bg-blue-700 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 font-inter">Add</button>
+                             </div>
+            
+                 </form>
+         
+         
+             </div>
+
+        </div>
+        
+        
+        
+        </div>
+
+    
+           
+        
+        
+    
+
+
+    </div>
+
+   
+    <!-- JavaScript to handle modal -->
+    <script>
+        
+
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            function closeModalDepartment1() {
+                const overlayDepartment1 = document.getElementById('overlayDepartment1');
+                const modalDepartment1 = document.getElementById('modalDepartment1');
+                const openDepartment1= document.getElementById('openModalDepartment1');
+                overlayDepartment1.classList.add('hidden');
+                modalDepartment1.classList.add('hidden');
+                openModalDepartment1.classList.remove('opacity-0');
+             }
+
+            openModalDepartment1.addEventListener('click', function() {
+                overlayDepartment1.classList.remove('hidden');
+                modalDepartment1.classList.remove('hidden');
+              
+            });
+
+            overlayDepartment1.addEventListener('click', function() {
+                closeModalDepartment1();
+            });
+            
+            exitBtnDepartment1.addEventListener('click', function() {
+                closeModalDepartment1();
+            });
+
+            CancelBtnDepartment.addEventListener('click', function() {
+                closeModalDepartment1();
+            });
+
+
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const dropdownButton = document.getElementById("dropdownMenuIconButton");
+            const dropdownMenu = document.getElementById("dropdownDots");
+            const overlayContract = document.getElementById("overlayContract ");
+
+            dropdownButton.addEventListener("click", function() {
+                dropdownMenu.classList.toggle("hidden");
+                overlayContract.classList.toggle("hidden");
+                overlayContract .classList.toggle("opacity-50"); // Toggle the opacity
+            });
+
+            overlay.addEventListener("click", function() {
+                dropdownMenu.classList.add("hidden");
+                overlayContract .classList.add("hidden");
+                overlayContract .classList.remove("opacity-50"); // Restore original opacity
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const dropdownButton2 = document.getElementById("dropdownMenuIconButton2");
+            const dropdownMenu2 = document.getElementById("dropdownDots2");
+            const overlayContract2 = document.getElementById("overlayContract2 ");
+
+            dropdownButton2.addEventListener("click", function() {
+                dropdownMenu2.classList.toggle("hidden");
+                overlayContract2.classList.toggle("hidden");
+                overlayContract2 .classList.toggle("opacity-50"); // Toggle the opacity
+            });
+
+            overlay2.addEventListener("click", function() {
+                dropdownMenu2.classList.add("hidden");
+                overlayContract2 .classList.add("hidden");
+                overlayContract2 .classList.remove("opacity-50"); // Restore original opacity
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const dropdownButton3 = document.getElementById("dropdownMenuIconButton3");
+            const dropdownMenu3 = document.getElementById("dropdownDots3");
+            const overlayContract3 = document.getElementById("overlayContract3 ");
+
+            dropdownButton3.addEventListener("click", function() {
+                dropdownMenu3.classList.toggle("hidden");
+                overlayContract3.classList.toggle("hidden");
+                overlayContract3 .classList.toggle("opacity-50"); // Toggle the opacity
+            });
+
+            overlay3.addEventListener("click", function() {
+                dropdownMenu3.classList.add("hidden");
+                overlayContract3 .classList.add("hidden");
+                overlayContract3 .classList.remove("opacity-50"); // Restore original opacity
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const dropdownButton4 = document.getElementById("dropdownMenuIconButton4");
+            const dropdownMenu4 = document.getElementById("dropdownDots4");
+            const overlayContract4 = document.getElementById("overlayContract4 ");
+
+            dropdownButton4.addEventListener("click", function() {
+                dropdownMenu4.classList.toggle("hidden");
+                overlayContract4.classList.toggle("hidden");
+                overlayContract4 .classList.toggle("opacity-50"); // Toggle the opacity
+            });
+
+            overlay4.addEventListener("click", function() {
+                dropdownMenu4.classList.add("hidden");
+                overlayContract4 .classList.add("hidden");
+                overlayContract4 .classList.remove("opacity-50"); // Restore original opacity
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const dropdownButton5 = document.getElementById("dropdownMenuIconButton5");
+            const dropdownMenu5 = document.getElementById("dropdownDots5");
+            const overlayContract5 = document.getElementById("overlayContract5 ");
+
+            dropdownButton5.addEventListener("click", function() {
+                dropdownMenu5.classList.toggle("hidden");
+                overlayContract5.classList.toggle("hidden");
+                overlayContract5 .classList.toggle("opacity-50"); // Toggle the opacity
+            });
+
+            overlay5.addEventListener("click", function() {
+                dropdownMenu5.classList.add("hidden");
+                overlayContract5 .classList.add("hidden");
+                overlayContract5 .classList.remove("opacity-50"); // Restore original opacity
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            function closeModalCategory() {
+                const overlayCategory = document.getElementById('overlayCategory');
+                const modalCategory = document.getElementById('modalCategory');
+                const openModalCategory= document.getElementById('openModalCategory');
+                overlayCategory.classList.add('hidden');
+                modalCategory.classList.add('hidden');
+                openModalCategory.classList.remove('opacity-0');
+             }
+
+            openModalCategory.addEventListener('click', function() {
+                overlayCategory.classList.remove('hidden');
+                modalCategory.classList.remove('hidden');
+              
+            });
+
+            overlayCategory.addEventListener('click', function() {
+                closeModalCategory();
+            });
+            
+            exitBtnCategory.addEventListener('click', function() {
+                closeModalCategory();
+            });
+
+            CancelBtnCategory.addEventListener('click', function() {
+                closeModalCategory();
+            });
+
+
+        });
+
+    </script>
+    
+    
+</div>
+
+</div>
+

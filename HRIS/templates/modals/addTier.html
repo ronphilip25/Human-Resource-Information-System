@@ -1,0 +1,94 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Tier</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    
+</head>
+
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+    <!-- Overlay -->
+    <div class="hidden fixed top-0 left-0 w-full h-full bg-black opacity-50 z-10" id="overlayDepartment"></div>
+
+    <!-- Modal -->
+    <div class="hidden w-full max-w-2xl mx-auto h-auto fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-12 rounded-md shadow-md z-20 " id="modalDepartment">
+        <h2 class="text-2xl font-bold border-b border-blue-300 pt-6 pb-6 flex justify-between items-center">
+            Add Tier
+                <a href="#">
+                    <div id="exitBtnDepartment" class="w-6 h-6 flex justify-center items-center border border-red-400 rounded-full text-red-500 text-xs">&#x2715;</div>
+                </a>
+        </h2>
+        
+        <form action="#" method="POST">
+            {% csrf_token %}
+      
+
+                    <div class="mb-8 border-b border-blue-300 pb-8 mt-6">
+                        <label for="Work-Schedule-Name" class="text-sm font-bold block text-s text-black font-inter mb-3">Tier Name</label> 
+                        <input type="text" id="title" name="title" placeholder="Enter Tier Name" class="border-2 mt-1 block w-full rounded-md border-gray-400 shadow-sm py-1 pl-3 pr-10 text-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50 hover:border-blue-600 focus:border-blue-600 focus:outline-none" onfocus="handleInputFocus()" onblur="handleInputBlur()">
+                    </div>
+
+                    <div class="mt-6 flex justify-end pb-6">
+                        <button type="button" id="CancelBtnDepartment" class="border-2 py-2 px-4 rounded-md mr-4 hover:bg-gray-300 focus:outline-none focus:gray-red-300">Cancel</button>
+                        <button type="submit" class="w-20 bg-blue-700 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 font-inter">Add</button>
+                    </div>
+   
+        </form>
+
+
+    </div>
+    
+    
+    
+    <script>
+        
+
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            function closeModalDepartment() {
+                const overlayDepartment = document.getElementById('overlayDepartment');
+                const modalDepartment = document.getElementById('modalDepartment');
+                const openDepartment= document.getElementById('openModalDepartment');
+                overlayDepartment.classList.add('hidden');
+                modalDepartment.classList.add('hidden');
+                openModalDepartment.classList.remove('opacity-0');
+             }
+
+            openModalDepartment.addEventListener('click', function() {
+                overlayDepartment.classList.remove('hidden');
+                modalDepartment.classList.remove('hidden');
+              
+            });
+
+            overlayDepartment.addEventListener('click', function() {
+                closeModalDepartment();
+            });
+            
+            exitBtnDepartment.addEventListener('click', function() {
+                closeModalDepartment();
+            });
+
+            CancelBtnDepartment.addEventListener('click', function() {
+                closeModalDepartment();
+            });
+
+
+        });
+
+
+
+
+
+
+    </script>
+    
+    
+</div>
+
+</div>
+

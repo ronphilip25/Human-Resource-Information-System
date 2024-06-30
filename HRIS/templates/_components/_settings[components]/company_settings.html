@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% include '_components/header.html' %}
+
+{% block title %} Company Settings | Geopro {% endblock %}
+
+{% block content %}
+
+{% include '_components/_settings[components]/_widget/widgets.html' %}
+
+<script src="{% static 'js/script.js' %}" ></script>
+
+{% endblock %}

@@ -1,0 +1,229 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block mainTitle %}    Job Information     {% endblock mainTitle %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    
+</head>
+
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+    <!-- Overlay -->
+    <div class="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-10 hidden " id="overlay"></div>
+
+    <!-- Modal -->
+    <div class="hidden w-full max-w-5xl mx-auto h-auto fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-12 rounded-md shadow-md z-20 " id="modal">
+        <h2 class="text-2xl font-bold border-b border-blue-300 pt-4 pb-8 flex justify-between items-center">
+            Members of Master Admin
+                <a href="#">
+                    <div id="exitBtn" class="w-6 h-6 flex justify-center items-center border border-red-400 rounded-full text-red-500 text-xs">&#x2715;</div>
+                </a>
+        </h2>
+        
+        <form action="#" method="POST">
+            {% csrf_token %}
+                
+                <div class="grid grid-cols-3 grid-rows-4">
+                    
+                    <div class="grid col-start-1 col-end-2 row-start-1 h-32 row-end-2 pt-6 relative">
+
+                        <div class="mb-2 pt-4">
+                            <div class="relative">
+                                <select class="text-sm block w-72 h-12 rounded-md border-2 border-gray-400 shadow-sm py-1 pl-3 pr-10 appearance-none hover:border-blue-600 focus:border-blue-600 focus:outline-none">
+
+                                    <option value="option1">ALL</option>
+                                    <option value="option2">2</option>
+                                    <option value="option3">3</option>
+                                    <option value="option4">4</option>
+    
+                                </select>
+                                <div class="pointer-events-none absolute inset-y-0 right-6 flex items-center px-2 text-gray-400">
+                                    <!-- Heroicon name: solid/chevron-down -->
+                                    <svg class="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                        <path fill-rule="evenodd" d="M10 12.586L4.707 7.293a1 1 0 00-1.414 1.414l6 6a1 1 0 001.414 0l6-6a1 1 0 10-1.414-1.414L10 12.586z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-8 mt-4">
+                            <input type="text" id="title" name="title" placeholder="Search by Name" class="border-2 mt-1  block w-72 h-12 rounded-md border-gray-400 shadow-sm py-1 pl-3 pr-10 text-sm focus:ring focus:ring-blue-200 focus:ring-opacity-50 hover:border-blue-600 focus:border-blue-600 focus:outline-none" onfocus="handleInputFocus()" onblur="handleInputBlur()">
+                        </div>
+
+                    </div>
+                    
+  
+                    <div class="grid col-start-1 col-end-2 row-start-2 row-end-3">
+
+                            
+                    </div>
+
+
+
+                    
+                                
+                    <div class="border-l border-blue-300 grid col-span-3 row-start-1 row-end-3 pt-9 pl-4">
+                        
+                        <div class="mb-8 border border-black rounded-md grid col-span-3 row-span-3 h-full">
+
+                            <h2 class="pl-6 text-lg font-bold  pt-4 pb-8 flex justify-between ">
+                                Checked (3)
+                                    <a href="#">
+                                        <div class="mr-8  flex justify-center font-normal  items-center  text-red-500 text-sm">Delete All</div>
+                                    </a>
+                            </h2>
+
+                            <div class=" pt-2 pl-6 flex justify-between mb-3">
+                                <!-- Container for image and dot -->
+                                <div class="inline-flex relative">
+                                    <div>
+                                        <!-- Profile picture -->
+                                        <img class="w-12 h-12 rounded-full" src="{% static 'profile.png' %}" style="border-radius: 50%;">
+                                        <!-- Green dot -->
+                                        <div class="absolute top-8 left-8 mb-1 w-4 h-4 border-white-900 border-2 bg-green-500 rounded-full"></div>
+                                    </div>
+                                    <!-- Profile information -->
+                                    <div class=""> <!-- Added ml-2 for margin-left -->
+                                        <div class="font-bold text-base  pl-6 pb-1">Chan P Dacillo  </div> <!-- Increased font size to 'text-lg' -->
+                                        <p class="text-gray-700 text-sm pl-6">Marketing Department</p>   
+                                    </div>
+                                    </div>
+
+                                    <div class="pr-8">
+                                    <a href="#">
+                                        <div class="w-6 h-6 flex font-bold justify-center items-center border border-black rounded-full text-black text-xs">&#x2715;</div>
+                                    </a>
+                                    </div>
+                            </div>
+
+                            <div class=" pt-2 pl-6 flex justify-between mb-3">
+                                <!-- Container for image and dot -->
+                                <div class="inline-flex relative">
+                                    <div>
+                                        <!-- Profile picture -->
+                                        <img class="w-12 h-12 rounded-full" src="{% static 'profile.png' %}" style="border-radius: 50%;">
+                                        <!-- Green dot -->
+                                        <div class="absolute top-8 left-8 mb-1 w-4 h-4 border-white-900 border-2 bg-green-500 rounded-full"></div>
+                                    </div>
+                                    <!-- Profile information -->
+                                    <div class=""> <!-- Added ml-2 for margin-left -->
+                                        <div class="font-bold text-base  pl-6 pb-1">John Andre Arce</div> <!-- Increased font size to 'text-lg' -->
+                                        <p class="text-gray-700 text-sm pl-6">IT Department</p>   
+                                    </div>
+                                    </div>
+
+                                    <div class="pr-8">
+                                    <a href="#">
+                                        <div class="w-6 h-6 flex font-bold justify-center items-center border border-black rounded-full text-black text-xs">&#x2715;</div>
+                                    </a>
+                                    </div>
+                            </div>
+
+                            <div class=" pt-2 pl-6 flex justify-between mb-3">
+                                <!-- Container for image and dot -->
+                                <div class="inline-flex relative">
+                                    <div>
+                                        <!-- Profile picture -->
+                                        <img class="w-12 h-12 rounded-full" src="{% static 'profile.png' %}" style="border-radius: 50%;">
+                                        <!-- Green dot -->
+                                        <div class="absolute top-8 left-8 mb-1 w-4 h-4 border-white-900 border-2 bg-red-500 rounded-full"></div>
+                                    </div>
+                                    <!-- Profile information -->
+                                    <div class=""> <!-- Added ml-2 for margin-left -->
+                                        <div class="font-bold text-base  pl-6 pb-1">Patricia Kim Rosauro</div> <!-- Increased font size to 'text-lg' -->
+                                        <p class="text-gray-700 text-sm pl-6">IT Department</p>   
+                                    </div>
+                                    </div>
+
+                                    <div class="pr-8">
+                                    <a href="#">
+                                        <div class="w-6 h-6 flex font-bold justify-center items-center border border-black rounded-full text-black text-xs">&#x2715;</div>
+                                    </a>
+                                    </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                            <div id="divJobInfo4" class=" grid col-start-2 col-end-4 row-start-3 row-end-3 pl-4 border-l border-blue-300">
+
+                            </div>
+                        
+                            
+                            
+
+                            <div id="divJobInfo5" class=" col-start-2 col-end-4 row-start-4 row-end-4 pl-4 border-l border-blue-300">
+                                <div class="mt-20 justify-end flex " id="buttonContainer">
+                                    <button type="button" id="CancelBtn" class="py-2 border-2 px-6 rounded-md mr-4 hover:bg-gray-300 focus:outline-none focus:gray-red-300">Cancel</button>
+                                    <button type="submit" class="px-8 bg-blue-700 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600 font-inter">Save</button>
+                                </div>
+                            </div>
+
+
+
+                            
+                </div>
+        </form>
+
+
+    </div>
+    
+    
+    <!-- Button to open modal -->
+   
+    <!-- JavaScript to handle modal -->
+
+    <script>
+
+    
+        function closeModal() {
+            const overlay = document.getElementById('overlay');
+            const modal = document.getElementById('modal');
+            const openModalBtn = document.getElementById('openModal');
+            overlay.classList.add('hidden');
+            modal.classList.add('hidden');
+            openModalBtn.classList.remove('opacity-0');
+
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const editBtn = document.getElementById('editBtn');
+            const overlay = document.getElementById('overlay');
+            const modal = document.getElementById('modal');
+            const openModalBtn = document.getElementById('openModal');
+            
+    
+            openModalBtn.addEventListener('click', function() {
+                overlay.classList.remove('hidden');
+                modal.classList.remove('hidden');
+                openModalBtn.classList.add('opacity-0');
+            });
+    
+            overlay.addEventListener('click', function() {
+                closeModal();
+            });
+            CancelBtn.addEventListener('click', function() {
+                closeModal();
+            });
+    
+            exitBtn.addEventListener('click', function() {
+                closeModal();
+            });
+
+            });
+
+
+       
+
+    </script>
+
+</div>
+
+</div>
+

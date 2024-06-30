@@ -1,0 +1,30 @@
+@import "tailwindcss/base";
+
+@import "tailwindcss/components";
+
+@import "tailwindcss/utilities";
+
+.apply-dir-here {
+	@apply max-w-[400px];
+}
+
+canvas {
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+}
+.chart-container {
+	position: relative;
+	margin: auto;
+	height: 400px;
+	width: 800px;
+}
+.chart-container canvas {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* li {
+	@apply relative before:absolute before:content-[''] before:-top-3 before:-left-[29px] before:w-4 before:h-[22.5px] before:inline before:border-2 before:border-t-0 before:border-r-0 before:border-slate-600 before:-z-10;
+  } */

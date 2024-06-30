@@ -1,0 +1,404 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Department</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&Caveat:wght@500&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                        caveat: ['Caveat', 'cursive'],
+                    },
+                },
+            },
+        };
+    </script>
+    
+    
+</head>
+
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+    <!-- Overlay -->
+    <div class="hidden fixed top-0 left-0 w-full h-full bg-black opacity-50 z-10" id="overlayDepartment1"></div>
+
+    <!-- Modal -->
+    <div class="hidden w-full max-w-2xl mx-auto h-auto fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-12 rounded-md shadow-md z-20 " id="modalDepartment1">
+        <h2 class="text-2xl font-bold border-b border-blue-300 pt-6 pb-6 flex justify-between items-center">
+            Add Department
+                <a href="#">
+                    <div id="exitBtnDepartment1" class="w-6 h-6 flex justify-center items-center border border-red-400 rounded-full text-red-500 text-xs">&#x2715;</div>
+                </a>
+        </h2>
+                
+
+        <div class="  pb-8 mt-6">
+            <button type="submit" class="flex border-dotted border-2 border-blue-500 items-center justify-between w-full bg-blue-200 text-blue-900 py-2 px-4 rounded-md hover:bg-blue-300 focus:outline-nonefont-inter">
+                <span class="ml-48">Add Department</span>
+                <span class="mr-48 text-blue-700 text-xs w-4 h-4 flex justify-center items-center rounded-full border border-blue-500">i</span>
+            </button>
+        </div>
+
+        
+<!-- Container -->
+            <div class="-my-6">
+
+                <!-- Item #1 -->
+                <div class="relative sm:pl-4 py-2 group">
+                    <!-- Purple label -->
+
+                    <!-- Vertical line (::before) ~ Date ~ Title ~ Circle marker (::after) -->
+                    <div class="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-slate-300  before:self-start before:-translate-x-1/2 before:translate-y-3 after:absolute after:left-2 sm:after:left-0 after:w-2 after:h-2 after:bg-blue-900 after:border-4 after:box-content after:border-slate-50 after:rounded-full after:-translate-x-1/2 after:translate-y-1.5">
+
+                        <a href="#" id="parent" class="text-base font-bold text-black">
+                            
+                            <span class="text-base text-black">Geopro Global Solutions</span>
+
+                            <div id="overlayContract" class="hidden fixed inset-0 bg-black opacity-0 z-50"></div>
+
+                            <button id="dropdownMenuIconButton" class="absolute left-full transform -translate-x-1/2 top-1/2 -translate-y-1/2 flex items-center justify-center w-8 h-8 rounded-full">
+                              <span class="w-[5px] h-[5px] bg-gray-700 rounded-full"></span>
+                              <span class="w-[5px] h-[5px] bg-gray-700 rounded-full mx-1"></span>
+                              <span class="w-[5px] h-[5px] bg-gray-700 rounded-full"></span>
+                            </button>
+
+                            <div id="dropdownDots" class="border border-gray-300 hidden z-40 bg-white divide-y divide-gray-100 rounded-lg shadow w-50 dark:bg-gray-700 dark:divide-gray-600 absolute right-4  mt-2">
+                                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconButton">
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-black">Add Sub-Organization</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-black">Edit Department Name</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-black">Delete</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </a>
+                    </div>
+
+
+
+                    <!-- Content -->
+                </div>
+                
+                <!-- Item #2 -->
+                <div class="relative pl-8 sm:pl-4 py-2 group">
+                    <!-- Purple label -->
+
+                    <!-- Vertical line (::before) ~ Date ~ Title ~ Circle marker (::after) -->
+                    <div class="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-slate-300  before:self-start before:-translate-x-1/2 before:translate-y-3">
+
+                        <div class=" flex flex-row items-center mt-3 group-last:before:hidden before:absolute before:top-1/2 before:-translate-y-1/2 before:left-0 before:w-12 before:h-[2px] before:bg-slate-300"></div>
+
+                        <div class="text-base text-black after:absolute after:left-2 sm:after:left-10 after:w-2 after:h-2 after:bg-blue-600 after:border-4 after:box-content after:border-slate-50 after:rounded-full after:-translate-x-1/2 after:translate-y-1.5 pl-10">
+                            
+                            <span class="text-base text-black">Human Resource</span>
+
+                            <div id="overlayContract2" class="hidden fixed inset-0 bg-black opacity-0 z-50"></div>
+
+                            <button id="dropdownMenuIconButton2" class="absolute left-full transform -translate-x-1/2 top-1/2 -translate-y-1/2 flex items-center justify-center w-8 h-8 rounded-full">
+                              <span class="w-[5px] h-[5px] bg-gray-700 rounded-full"></span>
+                              <span class="w-[5px] h-[5px] bg-gray-700 rounded-full mx-1"></span>
+                              <span class="w-[5px] h-[5px] bg-gray-700 rounded-full"></span>
+                            </button>
+
+                            <div id="dropdownDots2" class="border border-gray-300 hidden z-40 bg-white divide-y divide-gray-100 rounded-lg shadow w-50 dark:bg-gray-700 dark:divide-gray-600 absolute right-4 ">
+                                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconButton2">
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-black">Add Sub-Organization</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-black">Edit Department Name</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-black">Delete</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-10 before:h-[41px] before:px-px before:bg-slate-300  before:self-start before:-translate-x-1/2 before:translate-y-5"></div>
+
+                    </div>
+                    <!-- Content -->
+                </div>
+                
+                <!-- Item #3 -->
+                <div class="relative pl-8 sm:pl-4 py-2 group">
+                    <!-- Purple label -->
+                    <!-- Vertical line (::before) ~ Date ~ Title ~ Circle marker (::after) -->
+                    <div class="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-full before:px-px before:bg-slate-300  before:self-start before:-translate-x-1/2 before:translate-y-3 ">
+
+                        <div class="flex flex-row items-center mt-3 group-last:before:hidden before:absolute before:top-6 before:-translate-y-1/2 before:left-10 before:w-8 before:h-[2px] before:bg-slate-300"></div>
+
+                        <div class="text-base text-black after:absolute after:left-2 sm:after:left-16 after:w-2 after:h-2 after:bg-blue-600 after:border-4 after:box-content after:border-slate-50 after:rounded-full after:-translate-x-1/2 after:translate-y-1.5 pl-16">
+                            
+                            <span class="text-base text-black">Admin Department</span>
+
+                            <div id="overlayContract3" class="hidden fixed inset-0 bg-black opacity-0 z-50"></div>
+
+                            <button id="dropdownMenuIconButton3" class="absolute left-full transform -translate-x-1/2 top-1/2 -translate-y-1/2 flex items-center justify-center w-8 h-8 rounded-full">
+                              <span class="w-[5px] h-[5px] bg-gray-700 rounded-full"></span>
+                              <span class="w-[5px] h-[5px] bg-gray-700 rounded-full mx-1"></span>
+                              <span class="w-[5px] h-[5px] bg-gray-700 rounded-full"></span>
+                            </button>
+
+                            <div id="dropdownDots3" class="border border-gray-300 hidden z-40 bg-white divide-y divide-gray-100 rounded-lg shadow w-50 dark:bg-gray-700 dark:divide-gray-600 absolute right-4 ">
+                                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconButton2">
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-black">Add Sub-Organization</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-black">Edit Department Name</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-black">Delete</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- Content -->
+                </div>
+                
+                <!-- Item #4 -->
+                <div class="relative pl-8 sm:pl-4 py-2 group">
+                    <!-- Purple label -->
+                    <!-- Vertical line (::before) ~ Date ~ Title ~ Circle marker (::after) -->
+                    <div class="flex flex-col sm:flex-row items-start mb-1 group-last:before:hidden before:absolute before:left-2 sm:before:left-0 before:h-[47px] before:px-px before:bg-slate-300  before:self-start before:-translate-x-1/2 before:translate-y-3 ">
+
+                        <div class=" flex flex-row items-center mt-3 group-last:before:hidden before:absolute before:top-1/2 before:-translate-y-1/2 before:left-0 before:w-12 before:h-[2px] before:bg-slate-300"></div>
+
+                        <div class="text-base text-black after:absolute after:left-2 sm:after:left-10 after:w-2 after:h-2 after:bg-blue-600 after:border-4 after:box-content after:border-slate-50 after:rounded-full after:-translate-x-1/2 after:translate-y-1.5 pl-10">
+                            
+                            <span class="text-base text-black">Marketing Department</span>
+
+                            <div id="overlayContract4" class="hidden fixed inset-0 bg-black opacity-0 z-50"></div>
+
+                            <button id="dropdownMenuIconButton4" class="absolute left-full transform -translate-x-1/2 top-1/2 -translate-y-1/2 flex items-center justify-center w-8 h-8 rounded-full">
+                              <span class="w-[5px] h-[5px] bg-gray-700 rounded-full"></span>
+                              <span class="w-[5px] h-[5px] bg-gray-700 rounded-full mx-1"></span>
+                              <span class="w-[5px] h-[5px] bg-gray-700 rounded-full"></span>
+                            </button>
+
+                            <div id="dropdownDots4" class="border border-gray-300 hidden z-40 bg-white divide-y divide-gray-100 rounded-lg shadow w-50 dark:bg-gray-700 dark:divide-gray-600 absolute right-4 ">
+                                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconButton2">
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-black">Add Sub-Organization</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-black">Edit Department Name</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-black">Delete</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- Content -->
+                </div>
+
+                <div class="relative pl-8 sm:pl-4 py-2 group">
+                    <!-- Purple label -->
+                    <!-- Vertical line (::before) ~ Date ~ Title ~ Circle marker (::after) -->
+                    <div class="flex flex-col sm:flex-row items-start mb-1  ">
+
+                        <div class="flex flex-row items-center mt-3 group-last:before:hidden before:absolute before:top-1/2 before:-translate-y-1/2 before:left-0 before:w-12 before:h-[2px] before:bg-slate-300"></div>
+
+                        <div class="text-base text-black after:absolute after:left-2 sm:after:left-10 after:w-2 after:h-2 after:bg-blue-600 after:border-4 after:box-content after:border-slate-50 after:rounded-full after:-translate-x-1/2 after:translate-y-1.5 pl-10">
+                            
+                            <span class="text-base text-black">IT Department</span>
+
+                            <div id="overlayContract5" class="hidden fixed inset-0 bg-black opacity-0 z-50"></div>
+
+                            <button id="dropdownMenuIconButton5" class="absolute left-full transform -translate-x-1/2 top-1/2 -translate-y-1/2 flex items-center justify-center w-8 h-8 rounded-full">
+                              <span class="w-[5px] h-[5px] bg-gray-700 rounded-full"></span>
+                              <span class="w-[5px] h-[5px] bg-gray-700 rounded-full mx-1"></span>
+                              <span class="w-[5px] h-[5px] bg-gray-700 rounded-full"></span>
+                            </button>
+                            
+                            <div id="dropdownDots5" class="border border-gray-300 hidden z-40 bg-white divide-y divide-gray-100 rounded-lg shadow w-50 dark:bg-gray-700 dark:divide-gray-600 absolute right-4 ">
+                                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownMenuIconButton2">
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-black">Add Sub-Organization</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-black">Edit Department Name</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white text-black">Delete</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- Content -->
+                </div>
+
+                <div class="mb-64">
+
+                </div>
+
+
+            </div>
+
+
+        
+
+
+    </div>
+    
+    
+    <!-- Button to open modal -->
+    
+    <!-- JavaScript to handle modal -->
+    <script>
+        
+
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            function closeModalDepartment1() {
+                const overlayDepartment1 = document.getElementById('overlayDepartment1');
+                const modalDepartment1 = document.getElementById('modalDepartment1');
+                const openDepartment1= document.getElementById('openModalDepartment1');
+                overlayDepartment1.classList.add('hidden');
+                modalDepartment1.classList.add('hidden');
+                openModalDepartment1.classList.remove('opacity-0');
+             }
+
+            openModalDepartment1.addEventListener('click', function() {
+                overlayDepartment1.classList.remove('hidden');
+                modalDepartment1.classList.remove('hidden');
+              
+            });
+
+            overlayDepartment1.addEventListener('click', function() {
+                closeModalDepartment1();
+            });
+            
+            exitBtnDepartment1.addEventListener('click', function() {
+                closeModalDepartment1();
+            });
+
+            CancelBtnDepartment.addEventListener('click', function() {
+                closeModalDepartment1();
+            });
+
+
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const dropdownButton = document.getElementById("dropdownMenuIconButton");
+            const dropdownMenu = document.getElementById("dropdownDots");
+            const overlayContract = document.getElementById("overlayContract ");
+
+            dropdownButton.addEventListener("click", function() {
+                dropdownMenu.classList.toggle("hidden");
+                overlayContract.classList.toggle("hidden");
+                overlayContract .classList.toggle("opacity-50"); // Toggle the opacity
+            });
+
+            overlay.addEventListener("click", function() {
+                dropdownMenu.classList.add("hidden");
+                overlayContract .classList.add("hidden");
+                overlayContract .classList.remove("opacity-50"); // Restore original opacity
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const dropdownButton2 = document.getElementById("dropdownMenuIconButton2");
+            const dropdownMenu2 = document.getElementById("dropdownDots2");
+            const overlayContract2 = document.getElementById("overlayContract2 ");
+
+            dropdownButton2.addEventListener("click", function() {
+                dropdownMenu2.classList.toggle("hidden");
+                overlayContract2.classList.toggle("hidden");
+                overlayContract2 .classList.toggle("opacity-50"); // Toggle the opacity
+            });
+
+            overlay2.addEventListener("click", function() {
+                dropdownMenu2.classList.add("hidden");
+                overlayContract2 .classList.add("hidden");
+                overlayContract2 .classList.remove("opacity-50"); // Restore original opacity
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const dropdownButton3 = document.getElementById("dropdownMenuIconButton3");
+            const dropdownMenu3 = document.getElementById("dropdownDots3");
+            const overlayContract3 = document.getElementById("overlayContract3 ");
+
+            dropdownButton3.addEventListener("click", function() {
+                dropdownMenu3.classList.toggle("hidden");
+                overlayContract3.classList.toggle("hidden");
+                overlayContract3 .classList.toggle("opacity-50"); // Toggle the opacity
+            });
+
+            overlay3.addEventListener("click", function() {
+                dropdownMenu3.classList.add("hidden");
+                overlayContract3 .classList.add("hidden");
+                overlayContract3 .classList.remove("opacity-50"); // Restore original opacity
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const dropdownButton4 = document.getElementById("dropdownMenuIconButton4");
+            const dropdownMenu4 = document.getElementById("dropdownDots4");
+            const overlayContract4 = document.getElementById("overlayContract4 ");
+
+            dropdownButton4.addEventListener("click", function() {
+                dropdownMenu4.classList.toggle("hidden");
+                overlayContract4.classList.toggle("hidden");
+                overlayContract4 .classList.toggle("opacity-50"); // Toggle the opacity
+            });
+
+            overlay4.addEventListener("click", function() {
+                dropdownMenu4.classList.add("hidden");
+                overlayContract4 .classList.add("hidden");
+                overlayContract4 .classList.remove("opacity-50"); // Restore original opacity
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const dropdownButton5 = document.getElementById("dropdownMenuIconButton5");
+            const dropdownMenu5 = document.getElementById("dropdownDots5");
+            const overlayContract5 = document.getElementById("overlayContract5 ");
+
+            dropdownButton5.addEventListener("click", function() {
+                dropdownMenu5.classList.toggle("hidden");
+                overlayContract5.classList.toggle("hidden");
+                overlayContract5 .classList.toggle("opacity-50"); // Toggle the opacity
+            });
+
+            overlay5.addEventListener("click", function() {
+                dropdownMenu5.classList.add("hidden");
+                overlayContract5 .classList.add("hidden");
+                overlayContract5 .classList.remove("opacity-50"); // Restore original opacity
+            });
+        });
+
+    </script>
+    
+    
+</div>
+
+</div>
+

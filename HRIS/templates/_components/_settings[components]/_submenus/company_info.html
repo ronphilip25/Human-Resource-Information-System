@@ -1,0 +1,201 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+<title>{% block title %} Company Info | Geopro {% endblock %}</title>
+
+{% block content %}
+
+{% include '_components/_settings[components]/_widget/widgets.html' %}
+
+<div class="container mx-auto">
+    <div class="grid grid-cols-4 grid-rows-1">
+        <div class="rounded-xl shadow-lg w-[375px] h-[350px] bg-white mt-4">
+            <h6 class="font-sans font-bold text-xl text-gray-600 p-2 ml-4 mt-3 mb-2">
+                Company Logo
+            </h6>
+            <div class="border-b border-blue-600 ml-6 mr-6 mb-2"></div>
+            <span class="font-sans text-xs font-normal text-gray-500 p-2 ml-4 w-full">
+                Upload and edit company logo here
+            </span>
+            <div class="ml-12 mt-2">
+                <ul class="list-disc">
+                    <li class=" text-xs font-normal font-sans text-gray-600">200px * 200px size is recommended</li>
+                    <li class=" text-xs font-normal font-sans text-gray-600">Max file size: 5MB</li>
+                    <li class=" text-xs font-normal font-sans text-gray-600">File format: .jpg, .jpeg, .png</li>
+                </ul>
+            </div>
+            <div class="flex items-center justify-between ml-5 mt-7">
+                <img src="{% static 'images/sample.png' %}" alt="SampleProfile" class="w-[140px] h-[140px] rounded-md border border-gray-200">
+                <div class="flex items-center justify-end mt-28">
+                    <button class=" rounded-md w-[68px] h-[29px] text-xs font-sans text-blue-600 border border-blue-600 mr-2">Change</button>
+                    <button class=" rounded-md w-[68px] h-[29px] text-xs font-sans font-bold text-white bg-red-900 mr-4">Delete</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-start-2 col-span-4 ml-1">
+            <div class="rounded-lg mt-4 w-[1148px] h-[740px] bg-white">
+                <h6 class="font-sans font-bold text-xl text-gray-600 p-4 mx-auto mb-[0.5px]">
+                    Company Information
+                </h6>
+                <div class="border-b border-blue-600 ml-6 mr-6 mt-1"></div>
+
+                <!-- Form -->
+                <div class="flex-col-2 flex justify-between">
+                    <div class=" mx-auto">
+                      <form action="#" method="POST" class="h-[39px] w-[550px]">
+                        <div class="mb-2 mt-4">
+                          <label for="company_name" class="text-normal mb-3 block font-sans font-bold text-gray-700"> Company Name </label>
+                          <div id="company_name" class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 text-gray-600 font-normal text-base font-sans">Geopro Global Solutions Inc.</div>
+                        </div>
+                      </form>
+                    </div>
+                    <div class=" mx-auto">
+                      <form action="#" method="POST" class="h-[39px] w-[550px]">
+                        <div class="mb-2 mt-4">
+                          <label for="representative_name" class="text-normal mb-3 block font-sans font-bold text-gray-700">Representative Name </label>
+                          <input type="text" placeholder="Enter Representative name" id="representative_name" name="representative_name" class="mt-1 block w-full rounded-md border font-sans font-normal text-base border-gray-300 px-3 py-2 focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-500 focus:ring-opacity-50" required />
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  
+                  <div class="flex-col-2 mt-8 flex justify-between">
+                    <div class="mx-auto">
+                        <form action="#" method="POST" class="h-[39px] w-[550px]">
+                          <div class="mb-2 mt-5">
+                            <label for="incorporate_date" class="text-normal mb-3 block font-sans font-bold text-gray-700">Incorporate Date</label>
+                            <input type="date" id="incorporate_date" name="incorporate_date" class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2" required />
+                          </div>
+                        </form>
+                      </div>                      
+                    <div class=" mx-auto">
+                      <form action="#" method="POST" class="h-[39px] w-[550px]">
+                        <div class="mb-2 mt-5">
+                          <label for="company_website" class="text-normal mb-3 block font-sans font-bold text-gray-700"> Company Website </label>
+                          <input type="text" placeholder="Enter Company Website" id="company_website" name="company_website" class="mt-1 block w-full rounded-md border font-sans font-normal text-base border-gray-300 px-3 py-2 focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-500 focus:ring-opacity-50" required />
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  
+                  <div class="flex-col-2 mt-8 flex justify-between">
+                    <div class=" mx-auto">
+                      <form action="#" method="POST" class="h-[39px] w-[550px]">
+                        <div class="mb-2  mt-5">
+                          <label for="company_email" class="text-normal mb-3 block font-sans font-bold text-gray-700"> Company Email </label>
+                          <input type="text" placeholder="Enter Company Email" id="company_email" name="company_email" class="mt-1 block w-full rounded-md border font-sans font-normal text-base border-gray-300 px-3 py-2 focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-500 focus:ring-opacity-50" required />
+                        </div>
+                      </form>
+                    </div>
+                    <div class="mx-auto">
+                        <form action="#" method="POST" class="h-[39px] w-[550px]">
+                          <div class="mb-2 mt-5">
+                            <label for="contact_number" class="text-normal mb-3 block font-sans font-bold text-gray-700">Company Contact Number</label>
+                            <div class="flex">
+                              <select id="country_code" name="country_code" class=" font-sans text-base font-normal text-gray-400 bg-gray-200 block rounded-md border border-gray-300 px-3 py-2 focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-500 focus:ring-opacity-50" required>
+                                <option value="+63">+63</option>
+                              </select>
+                              <input type="text" id="contact_number" name="contact_number" class="ml-2 w-[479px] rounded-md border border-gray-300 px-3 py-2 focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="Enter contact number" required />
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                      
+                  </div>
+                  
+                  <div class="flex-col-2 mt-8 flex justify-between">
+                    <div class="mx-auto">
+                        <form action="#" method="POST" class="h-[39px] w-[550px]">
+                          <div class="mb-2 mt-5">
+                            <label for="tin_number" class="text-normal mb-3 block font-sans font-bold text-gray-700">TIN Number</label>
+                            <input type="text" id="tin_number" name="tin_number" class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="000-000-000-000" pattern="\d{3}-\d{3}-\d{3}-\d{3}" required />
+                          </div>
+                        </form>
+                      </div>                      
+                      <div class="mx-auto">
+                        <form action="#" method="POST" class="h-[39px] w-[550px]">
+                          <div class="mb-2 mt-5">
+                            <label for="rdo_code" class="text-normal mb-3 block font-sans font-bold text-gray-700">RDO Code</label>
+                            <input type="text" id="rdo_code" name="rdo_code" class="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2 focus:border-indigo-500 focus:outline-none focus:ring focus:ring-indigo-500 focus:ring-opacity-50" placeholder="000" pattern="\d{3}" required />
+                          </div>
+                        </form>
+                      </div>                      
+                  </div>
+                  
+                  <!-- Company Address Name -->
+                <h6 class="flex mt-12 ml-3 text-lg font-bold font-sans text-gray-700">Company Name Address</h6>
+                <div class="grid grid-cols-2 grid-rows-3 gap-2">
+                    <div class="mx-auto">
+                        <form action="#" method="POST" class="w-[550px] h-[39px]">
+                          <div class="mb-2 mt-4">
+                            <select id="country_select" name="country_select" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" required>
+                              <option value="" disabled selected>Select Country</option>
+                              <option value="USA">USA</option>
+                              <option value="UK">UK</option>
+                              <option value="India">India</option>
+                              <option value="Philippines">Philippines</option>
+                              <!-- Add more countries as needed -->
+                            </select>
+                          </div>
+                        </form>
+                      </div>                      
+                    <div class=" mx-auto">
+                        <form action="#" method="POST" class="w-[550px] h-[39px]">
+                            <div class="mb-2 mt-4">
+                                <input type="text" placeholder="Unit / Lot / Building Number" id="unit" name="unit" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class=" mx-auto">
+                        <form action="#" method="POST" class="w-[550px] h-[39px]">
+                            <div class="mb-2 mt-4">
+                                <input type="text" placeholder="Street / Barangay" id="street" name="street" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="mx-auto">
+                        <form action="#" method="POST" class="w-[550px] h-[39px]">
+                          <div class="mb-2 mt-4">
+                            <select id="select_province" name="select_province" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" required>
+                              <option value="" disabled selected>Select Province</option>
+                              <option value="Pampanga">Pampanga</option>
+                              <option value="Tarlac">Tarlac</option>
+                              <option value="Bulacan">Bulacan</option>
+                              <option value="Manila">Manila</option>
+                              <!-- Add more countries as needed -->
+                            </select>
+                          </div>
+                        </form>
+                      </div> 
+                    <div class=" mx-auto">
+                        <form action="#" method="POST" class="w-[550px] h-[39px]">
+                            <div class="mb-2 mt-4">
+                                <input type="text" placeholder="Zip Code" id="zip_code" name="zip_code" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="mx-auto">
+                        <form action="#" method="POST" class="w-[550px] h-[39px]">
+                          <div class="mb-2 mt-4">
+                            <select id="select_province" name="select_province" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" required>
+                              <option value="" disabled selected>Select Province First</option>
+                              <option value="Pampanga">Pampanga</option>
+                              <option value="Tarlac">Tarlac</option>
+                              <option value="Bulacan">Bulacan</option>
+                              <option value="Manila">Manila</option>
+                              <!-- Add more countries as needed -->
+                            </select>
+                          </div>
+                        </form>
+                      </div>
+                </div>
+                <div class=" flex items-center justify-end p-6">
+                    <button type="submit" class=" w-[82px] h-[44px] bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-md text-xs">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
